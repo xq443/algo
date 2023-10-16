@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/BFS" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DFS" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DFS/Binary Tree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/binary_search" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/graph" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/graph/BFS" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/graph/topological sort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/linkedlist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/linkedlist/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/two_pointer" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
