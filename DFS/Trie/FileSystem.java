@@ -102,3 +102,10 @@ public class FileSystem {
  *      * fileSystem.ls("/");                         // return ["a"]
  *      * fileSystem.readContentFromFile("/a/b/c/d"); // return "hello"
  *      */
+
+//T/S: n = depth(path), m = size(content)
+//constructor: O(1)/O(1)
+//ls: O(n)/O(n)
+//mkdir: O(n)/O(n)
+//addContentToFile: O(n + m)/O(n + m)
+//readContentFromFile: O(n)/O(n)
