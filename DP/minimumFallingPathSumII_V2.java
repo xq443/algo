@@ -30,7 +30,7 @@ public class minimumFallingPathSumII_V2 {
             }
         }
         int ret = Integer.MAX_VALUE;
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < n; i++) {
             ret = Math.min(ret, dp[m-1][i]);
         }
         return ret;
