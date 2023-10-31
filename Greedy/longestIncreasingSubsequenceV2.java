@@ -9,6 +9,8 @@ public class longestIncreasingSubsequenceV2 {
          * 2, 3, 7
          * 2, 3, 7, 101
          * 2, 3, 7, 18
+         *
+         * TC O(NlogN)
          */
         int n = nums.length;
         if(nums.length == 0) return 0;
