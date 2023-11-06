@@ -1,4 +1,4 @@
-package Basic;
+package Double;
 
 public class distinctSubsequences {
     public static int numDistinct(String text1, String text2){

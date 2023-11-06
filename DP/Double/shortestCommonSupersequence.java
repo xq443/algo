@@ -1,4 +1,4 @@
-package Basic;
+package Double;
 
 public class shortestCommonSupersequence {
     /**

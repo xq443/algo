@@ -1,4 +1,4 @@
-package Basic;
+package Double;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 

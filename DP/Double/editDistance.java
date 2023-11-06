@@ -1,4 +1,4 @@
-package Basic;
+package Double;
 
 public class editDistance {
     public static int minDistance(String text1, String text2){

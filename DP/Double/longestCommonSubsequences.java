@@ -1,4 +1,4 @@
-package Basic;
+package Double;
 
 public class longestCommonSubsequences {
     public static int longestCommonSubsequence(String text1, String text2){
