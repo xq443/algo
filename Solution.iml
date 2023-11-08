@@ -14,6 +14,8 @@
       <sourceFolder url="file://$MODULE_DIR$/linkedlist/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DP" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Greedy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TwoPointer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/stack" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

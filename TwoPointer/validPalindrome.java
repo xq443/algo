@@ -1,5 +1,3 @@
-package src;
-
 public class validPalindrome {
     public static boolean validPalindrome(String s){
         //base case
