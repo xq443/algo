@@ -12,11 +12,7 @@ public class longestPalindromicSubsequence {
         int n = s.length();
         s = "#" + s;
         int [][] dp = new int[n+1][n+1];
-        for (int i = 0; i <= n ; i++) {
-            for (int j = 0; j <= n ; j++) {
-                dp[i][j] = 0;
-            }
-        }
+
         for (int len = 1; len <= n; len++) {
             for (int i = 1; i + len - 1 <= n ; i++) {
                 int j= i +len - 1;
