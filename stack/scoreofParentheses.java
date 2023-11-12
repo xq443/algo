@@ -20,7 +20,7 @@ public class scoreofParentheses {
         return curr;
     }
     public static void main(String[] args) {
-        String s= "()()";
+        String s= "(())";
         System.out.println(scoreOfParentheses(s));
     }
 }
