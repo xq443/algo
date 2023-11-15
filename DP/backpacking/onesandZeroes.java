@@ -22,13 +22,12 @@ public class onesandZeroes {
             }
             int[][] new_dp = new int[m+1][n+1];
             for (int k = 0; k <= m; k++) {
-                for (int j = 0; j <= n; j++) {
-                    new_dp[k][j] = dp[k][j];
-                }
+                new_dp[k] = Arrays.copyOf(dp[k], n+1);
+
             }
             for (int p = zeros; p <= m; p++) {
                 for (int j = ones; j <= n; j++) {
-                    new_dp[p][j] = Math.max(dp[p][j] , dp[p - zeros][j - ones] + 1);
+                    new_dp[p][j] = Math.max(dp[p][j] , dp[p - zeros][j - ones] + 1); // Deep copy for inner arrays
                 }
             }
             dp = new_dp;
