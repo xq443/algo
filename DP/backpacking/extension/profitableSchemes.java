@@ -1,4 +1,4 @@
-package backpacking;
+package backpacking.extension;
 
 public class profitableSchemes {
     /**
