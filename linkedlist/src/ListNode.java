@@ -13,9 +13,7 @@ public class ListNode {
     ListNode next;
 
     ListNode() {
-    }
-
-    ;
+    };
 
     ListNode(int val) {
         this.val = val;
@@ -23,6 +21,6 @@ public class ListNode {
 
     ListNode(int val, ListNode next) {
         this.val = val;
-        //this.next = next;
+        this.next = next;
     }
 }
