@@ -16,6 +16,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Greedy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TwoPointer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/stack" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DFS/Hashtable" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DFS/Trie" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DP/backpacking" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/recursion" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
