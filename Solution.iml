@@ -17,6 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/TwoPointer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/stack" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS/Hashtable" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DFS/Matrix" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS/Trie" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DP/backpacking" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Design" isTestSource="false" />
