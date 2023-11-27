@@ -24,6 +24,8 @@
       <sourceFolder url="file://$MODULE_DIR$/bit" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/recursion" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Prefix_sum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sort" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
