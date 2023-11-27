@@ -6,26 +6,26 @@
       <sourceFolder url="file://$MODULE_DIR$/BFS" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS/Binary Tree" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/binary_search" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/graph" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/graph/BFS" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/graph/topological sort" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/linkedlist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/linkedlist/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DP" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Greedy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TwoPointer" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/stack" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS/Hashtable" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS/Matrix" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DFS/Trie" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DP/backpacking" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Design" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/bit" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/recursion" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Binary_search" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Bit" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph/BFS" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph/topological sort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Linkedlist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Linkedlist/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Prefix_sum" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Stack" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
