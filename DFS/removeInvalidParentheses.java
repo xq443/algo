@@ -56,5 +56,7 @@ public class removeInvalidParentheses {
         System.out.println(ret.toString());
     }
 }
+//TC O(2^N)
+//SC O(N)
 
 
