@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class removeInvalidParentheses {
+public class removeInvalidParentheses_boss {
     int maxSize = -1;
     public List<String> removeInvalidParentheses(String s) {
         List<String> res = new ArrayList<>();
@@ -50,7 +50,7 @@ public class removeInvalidParentheses {
         }
     }
     public static void main(String[] args) {
-        removeInvalidParentheses r = new removeInvalidParentheses();
+        removeInvalidParentheses_boss r = new removeInvalidParentheses_boss();
         String s = "()())()";
         List<String> ret = r.removeInvalidParentheses(s);
         System.out.println(ret.toString());
