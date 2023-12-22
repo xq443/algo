@@ -28,8 +28,8 @@ public class randomPickWithWeight {
                 return "index = " + mid + " prob = " + probability;
             }
             else if (prefixS[mid] < target) {
-                left = mid + 1;
-            }else right = mid;
+                left = mid;
+            }else right = mid -1;
         }
         double probability = (double) w[right] / totalSum;
         return "index = " + right + " prob = " + probability;
