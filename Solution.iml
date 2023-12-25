@@ -28,6 +28,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Stack" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashTable" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort/bucketSort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Sort/divideConquer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort/quickSort" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />

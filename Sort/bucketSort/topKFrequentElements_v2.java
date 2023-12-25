@@ -1,5 +1,3 @@
-package bucketSort;
-
 import java.util.*;
 
 public class topKFrequentElements_v2 {

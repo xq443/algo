@@ -14,7 +14,7 @@ public class topKFrequentElements_v3 {
             queue.offer(entry);
         }
         int[] ret = new int[k];
-        //extract too k
+        //extract top k
         int idx = 0;
         for (int i = 0; i < k; i++) {
             ret[idx++] = Objects.requireNonNull(queue.poll()).getKey();
