@@ -1,7 +1,13 @@
 public class mergekSortedLists {
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists == null || lists.length == 0) return null;
-        return mergeDivideandConquer(lists, 0, lists.length - 1);
+        // Use the 0-th list as a return list
+        for (int i = 1; i < lists.length; ++i) {
+            lists[0] = mergeList(lists[0], lists[i]);
+        }
+
+        return lists[0];
+        //return mergeDivideandConquer(lists, 0, lists.length - 1);
     }
     private ListNode mergeDivideandConquer(ListNode[] lists, int left, int right){
         if(left > right) return null;

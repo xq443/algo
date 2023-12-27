@@ -5,15 +5,19 @@ public class mergekSortedLists_v2 {
         PriorityQueue<ListNode> minHeap = new PriorityQueue<>(
                 (a,b) -> (a.val - b.val)
         );
-        ListNode dummy = new ListNode(0);
+        ListNode dummy = new ListNode(-1);
         ListNode prev = dummy;
         for(ListNode list : lists){
             if(list != null) minHeap.offer(list);
         }
+        //At first enqueue the ListNode 1->4->5, 1->3->4, 2->6
+        //Pop the smallest node and offer its next node if it is not null.4->5, 3->4, 6
+
         while(!minHeap.isEmpty()){
-            prev.next = minHeap.poll();
+            ListNode curr = minHeap.poll();
+            prev.next = curr;
             prev = prev.next;
-            if(prev.next != null) minHeap.offer(prev.next);
+            if(curr.next != null) minHeap.offer(curr.next);
         }
         return dummy.next;
     }
