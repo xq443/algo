@@ -30,6 +30,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Sort/bucketSort" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort/divideConquer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort/quickSort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/String" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
