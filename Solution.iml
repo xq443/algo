@@ -26,6 +26,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Prefix_sum" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Stack" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DFS/Array" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashTable" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort/bucketSort" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sort/divideConquer" isTestSource="false" />
