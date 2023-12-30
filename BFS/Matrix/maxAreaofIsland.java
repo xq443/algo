@@ -1,3 +1,5 @@
+package Matrix;
+
 import java.util.LinkedList;
 import java.util.Queue;
 public class maxAreaofIsland {
