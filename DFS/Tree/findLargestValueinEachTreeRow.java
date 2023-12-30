@@ -4,11 +4,11 @@ public class findLargestValueinEachTreeRow {
     public List<Integer> largestValues(TreeNode root) {
         List<Integer> ret = new ArrayList<>();
         if(root == null) return ret;
-        bfs_findLargestValueinEachTreeRow(root, ret,0);
+        dfs_findLargestValueinEachTreeRow(root, ret,0);
 
         return ret;
     }
-    private void bfs_findLargestValueinEachTreeRow(TreeNode root, List<Integer> ret, int currDepth){
+    private void dfs_findLargestValueinEachTreeRow(TreeNode root, List<Integer> ret, int currDepth){
         if(root == null) return;
         if(currDepth >= ret.size()){
             ret.add(root.val);
@@ -16,8 +16,8 @@ public class findLargestValueinEachTreeRow {
             int maxVal = Math.max(root.val, ret.get(currDepth));
             ret.set(currDepth, maxVal);
         }
-        bfs_findLargestValueinEachTreeRow(root.left, ret, currDepth + 1);
-        bfs_findLargestValueinEachTreeRow(root.right, ret, currDepth + 1);
+        dfs_findLargestValueinEachTreeRow(root.left, ret, currDepth + 1);
+        dfs_findLargestValueinEachTreeRow(root.right, ret, currDepth + 1);
     }
 
     public static void main(String[] args) {
