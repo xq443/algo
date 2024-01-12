@@ -38,6 +38,7 @@ public class exclusiveTimeofFunctions {
         return ret;
     }
     public static void main(String[] args) {
+        //test
         exclusiveTimeofFunctions e = new exclusiveTimeofFunctions();
         int n = 2;
         List<String> logs = List.of(new String[]{"0:start:0", "1:start:2", "1:end:5", "0:end:6"});
