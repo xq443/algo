@@ -14,6 +14,7 @@ public class checkCompletenessofaBinaryTree_v2 {
         if(root == null) return 0;
         return 1 + countNode(root.left) + countNode(root.right);
     }
+
     public static void main(String[] args) {
         checkCompletenessofaBinaryTree_v2 c = new checkCompletenessofaBinaryTree_v2();
         // Create the binary tree: [1,2,3,4,5,6]
