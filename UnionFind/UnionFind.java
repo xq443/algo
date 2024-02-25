@@ -1,7 +1,7 @@
-public class unionfind {
+public class UnionFind {
     int[] parent;
     int[] rank;
-    public unionfind(int num){
+    public UnionFind(int num){
         parent = new int[num];
         rank = new int[num];
         for (int i = 0; i < parent.length; i++) {
@@ -9,10 +9,10 @@ public class unionfind {
             rank[i] = 1;
         }
     }
-    public void union(int a, int b){
+    public boolean union(int a, int b){
         int rootA = root(a);
         int rootB = root(b);
-        if(rootA == rootB) return;
+        if(rootA == rootB) return false;
         if(rank[rootA] > rank[rootB]){
             parent[rootB] = rootA;
         }else if(rank[rootA] < rank[rootB]){
@@ -20,9 +20,10 @@ public class unionfind {
         }else{
             parent[rootA] = rootB;
         }
+        return true;
     }
     public int root(int a){
-        if(parent[a] == a) return a;
+        if(a == parent[a]) return a;
         parent[a]= root(parent[a]);
         return parent[a];
     }

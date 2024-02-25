@@ -13,7 +13,7 @@ public class makingALargeIsland {
         int n = grid[0].length;
         int max = Integer.MIN_VALUE;
         int id = 2;
-        int[] count = new int[n* n +2];
+        int[] count = new int[n* n + 2];
         for (int i = 0; i < n;i++) {
             for (int j = 0; j < n; j++) {
                 if(grid[i][j] == 1){
@@ -77,6 +77,13 @@ public class makingALargeIsland {
         makingALargeIsland large = new makingALargeIsland();
         int[][] grid = {{1,1}, {1,1}};
         System.out.println(large.largestIsland(grid));
+
+        StringBuilder stringBuilder = new StringBuilder("Hello, World!");
+        int i = 7;  // number of characters to remove from the end
+
+        stringBuilder.delete(stringBuilder.length() - i, stringBuilder.length());
+
+        System.out.println(stringBuilder.toString());  // Output: Hello
 
     }
 

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class accountsMerge {
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
-        unionfind uf = new unionfind(accounts.size());
+        UnionFind uf = new UnionFind(accounts.size());
         Map<String, Integer> emailToAcc = new HashMap<>();
         for(int i = 0; i < accounts.size(); i++){
             List<String> details = accounts.get(i);
