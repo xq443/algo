@@ -1,3 +1,5 @@
+package MonotonicStack;
+
 import java.util.Stack;
 
 public class trappingRainWater {
