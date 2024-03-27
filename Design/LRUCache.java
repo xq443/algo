@@ -2,6 +2,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
+
+  /**
+   * Inner class representing a node in the doubly linked list used for the cache.
+   * Each node contains a key-value pair and maintains references to its previous and next nodes.
+   */
   public static class Node{
     int key;
     int value;
@@ -13,6 +18,12 @@ public class LRUCache {
   Node head;
   Map<Integer, Node> map;
   int capacity;
+
+  /**
+   * Constructs an LRUCache with the specified capacity.
+   *
+   * @param capacity The maximum number of key-value pairs that the cache can hold.
+   */
   public LRUCache(int capacity){
     this.map = new HashMap<>();
     this.head = new Node();
@@ -20,6 +31,13 @@ public class LRUCache {
     head.next = head;
     this.capacity = capacity;
   }
+
+  /**
+   * Retrieves the value associated with the specified key.
+   *
+   * @param key The key whose associated value is to be retrieved.
+   * @return The value associated with the specified key, or -1 if the key is not found.
+   */
 
   public int get(int key) {
     if(map.containsKey(key)) {
@@ -29,6 +47,14 @@ public class LRUCache {
     }
     return -1;
   }
+
+  /**
+   * Updates the value associated with the specified key or adds a new key-value pair to the cache.
+   * If the number of keys exceeds the capacity, the least recently used key-value pair is evicted.
+   *
+   * @param key   The key with which the specified value is to be associated.
+   * @param value The value to be associated with the specified key.
+   */
 
   public void put(int key, int value){
     if(map.containsKey(key)) {
