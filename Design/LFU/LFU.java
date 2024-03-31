@@ -56,6 +56,7 @@ public class LFU {
         DoublyLinkedList minFrequencyList = frequencyToLinkedList.get(minFrequency);
         Node toRemove = minFrequencyList.removeTail();
         updateFrequency(toRemove);
+        // ensure remove the key whenever any node is removed
         valueToNode.remove(toRemove.key);
       }
       Node newNode = new Node(key, value);

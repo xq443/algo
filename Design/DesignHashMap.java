@@ -98,5 +98,6 @@ public class DesignHashMap {
     System.out.println(myHashMap.get(2));     // return 1, The map is now [[1,1], [2,1]]
     myHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]
     System.out.println(myHashMap.get(2));    // return -1 (i.e., not found), The map is now [[1,1]]
+    System.out.println("Error:" + "e");
   }
 }
