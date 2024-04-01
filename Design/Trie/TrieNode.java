@@ -5,6 +5,8 @@ public class TrieNode {
   public TrieNode[] children;
   /** Indicates whether this node represents the end of a word. */
   public boolean isEnd;
+  public int count; // nodes passing through
+  public int countEnd; // nodes ending here
 
   /**
    * Constructs a new TrieNode.
