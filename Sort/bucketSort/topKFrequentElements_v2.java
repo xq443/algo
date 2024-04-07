@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class topKFrequentElements_v2 {
+public class TopKFrequentElements_v2 {
     public List<Integer> topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
         for(int n: nums){
@@ -32,7 +32,7 @@ public class topKFrequentElements_v2 {
         return res;
     }
     public static void main(String[] args) {
-        topKFrequentElements_v2 t = new topKFrequentElements_v2();
+        TopKFrequentElements_v2 t = new TopKFrequentElements_v2();
         int[]nums = {4,1,-1,2,-1,2,3, 1};
         int k = 2;
         System.out.println(t.topKFrequent(nums, k));
