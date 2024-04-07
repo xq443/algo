@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class TopKFrequentElements {
+public class topKFrequentElements {
     public int[] topKFrequent(int[] nums, int k) {
         //build frequency hashmap
         Map<Integer, Integer> map = new HashMap<>();
@@ -31,7 +31,7 @@ public class TopKFrequentElements {
         return ret;
     }
     public static void main(String[] args) {
-        TopKFrequentElements t = new TopKFrequentElements();
+        topKFrequentElements t = new topKFrequentElements();
         int[]nums = {4,1,-1,2,-1,2,3};
         int k = 2;
         System.out.println(Arrays.toString(t.topKFrequent(nums, k)));
