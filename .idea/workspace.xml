@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f46aef37-41d9-42ca-b20a-462cbd158e51" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DP/out/production/DP/DP.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HashTable/HashTable.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/Design.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DP/DP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/out/production/Design/LFU/DoublyLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/Design/out/production/Design/LFU/DoublyLinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/out/production/Design/LFU/LFU.class" beforeDir="false" afterPath="$PROJECT_DIR$/Design/out/production/Design/LFU/LFU.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/out/production/Design/LFU/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/Design/out/production/Design/LFU/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stack/MonotonicStack/NumberofVisiblePeopleinaQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/Stack/MonotonicStack/NumberofVisiblePeopleinaQueue.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4c2bf4fb-7ee3-43c2-a752-1858cc3cc96d" />
+        <option name="url" value="https://github.com/xq443/algo.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2WpeOI44G2cPkkhSdlsmnuiUcUc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/cathyqin/IdeaProjects/algo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.VCS&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.RemoveDuplicateLetters">
+    <configuration name="AllienDictionary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AllienDictionary" />
+      <module name="Solution" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FindAllPeopleWithSecret" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FindAllPeopleWithSecret" />
+      <module name="Solution" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NumberofProvinces" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="NumberofProvinces" />
+      <module name="Solution" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PossibleBipartition" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PossibleBipartition" />
+      <module name="Solution" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RemoveDuplicateLetters" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MonotonicStack.RemoveDuplicateLetters" />
+      <module name="Solution" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MonotonicStack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="algo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="algo" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RemoveDuplicateLetters" />
+        <item itemvalue="Application.FindAllPeopleWithSecret" />
+        <item itemvalue="Application.AllienDictionary" />
+        <item itemvalue="Application.PossibleBipartition" />
+        <item itemvalue="Application.NumberofProvinces" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f46aef37-41d9-42ca-b20a-462cbd158e51" name="Changes" comment="" />
+      <created>1697433914534</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697433914534</updated>
+      <workItem from="1697433916794" duration="17746000" />
+      <workItem from="1697677019859" duration="17419000" />
+      <workItem from="1698877829794" duration="42812000" />
+      <workItem from="1700322693233" duration="6767000" />
+      <workItem from="1700713134085" duration="9380000" />
+      <workItem from="1701163080478" duration="636000" />
+      <workItem from="1702954419487" duration="491000" />
+      <workItem from="1703025927724" duration="79071000" />
+      <workItem from="1704191828033" duration="9248000" />
+      <workItem from="1704868348527" duration="2070000" />
+      <workItem from="1705001111816" duration="8000" />
+      <workItem from="1705001246574" duration="89000" />
+      <workItem from="1705030948960" duration="202000" />
+      <workItem from="1705196516114" duration="3223000" />
+      <workItem from="1705449224088" duration="1317000" />
+      <workItem from="1705577845070" duration="2108000" />
+      <workItem from="1705621022695" duration="599000" />
+      <workItem from="1705716738264" duration="1006000" />
+      <workItem from="1705721657472" duration="660000" />
+      <workItem from="1705740270258" duration="4000" />
+      <workItem from="1705818760112" duration="23000" />
+      <workItem from="1706034395354" duration="6936000" />
+      <workItem from="1706069752338" duration="1528000" />
+      <workItem from="1708824021739" duration="7465000" />
+      <workItem from="1708924393752" duration="11463000" />
+      <workItem from="1709810578523" duration="151000" />
+      <workItem from="1709810742077" duration="11000" />
+      <workItem from="1712475844651" duration="261000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.EmptyStackException" package="java.util" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
