@@ -33,7 +33,7 @@ public class TwoBestNonOverlappingEvents {
       int value = event[2];
 
       // update the prev maxvalue (event start time)
-      while(!map.isEmpty() && map.firstKey() < start) {
+      while(!map.isEmpty() && map.firstKey() < start) { // non inclusive
         prev = Math.max(prev, map.remove(map.firstKey()));
       }
 
