@@ -1,3 +1,5 @@
+package Tree;
+
 public class symmetricTree {
     public static boolean isSymmetric(TreeNode root){
         if(root == null) return true;

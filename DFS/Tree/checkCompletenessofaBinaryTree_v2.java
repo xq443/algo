@@ -1,3 +1,5 @@
+package Tree;
+
 public class checkCompletenessofaBinaryTree_v2 {
     public boolean isCompleteTree(TreeNode root) {
         if(root == null) return false;

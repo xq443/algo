@@ -1,3 +1,5 @@
+package Tree;
+
 public class minimumDepthofBinaryTree_v2 {
     public int minDepth(TreeNode root) {
         //base case
