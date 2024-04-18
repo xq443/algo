@@ -6,8 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/BFS" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/topological sort" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BucketSort" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/DivideConquer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/QuickSort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MergeSort" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
