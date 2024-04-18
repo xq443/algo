@@ -21,7 +21,7 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
     if(inorder == null || inorder.length == 0 ||
         postorder == null || postorder.length == 0) return null;
     // the last element in postorder  -> root, record the value
-    // slice the inorder array according to the value index
+    // slice the inorder array according to the root index
     // which means we need to build a hashmap  key: treenode.value & value: idx in inorder
     Map<Integer, Integer> nodeToIdx = new HashMap<>();
     for (int i = 0; i < inorder.length; i++) {
