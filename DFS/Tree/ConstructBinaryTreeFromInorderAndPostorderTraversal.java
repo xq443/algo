@@ -38,11 +38,10 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
     TreeNode root = new TreeNode(postorder[last]);
     int rootIdx = nodeToIdx.get(postorder[last]); // rootIdx in the inorder array
     // traverse based on postorder array for the known rootIdx right most position
-    root.left = constructBST(inorder, postorder, nodeToIdx, start, rootIdx - 1,
-        last - (end - rootIdx + 1));
-    root.right = constructBST(inorder, postorder, nodeToIdx, rootIdx + 1,  end,
-        last - 1);
-
+    root.left = constructBST(inorder, postorder, nodeToIdx,
+        start, rootIdx - 1, last - (end - rootIdx + 1));
+    root.right = constructBST(inorder, postorder, nodeToIdx,
+        rootIdx + 1,  end, last - 1);
     return root;
   }
 
