@@ -1,4 +1,4 @@
-public class quickSelect {
+public class QuickSelect {
 
     // partition function similar to quick sort
     // Considers last element as pivot and adds
@@ -60,7 +60,7 @@ public class quickSelect {
 
         int kPosition = 3;
         int length = array.length;
-        System.out.println(quickSelect.partition(array,0, array.length - 1));
+        System.out.println(QuickSelect.partition(array,0, array.length - 1));
 
         if (kPosition > length) {
             System.out.println("Index out of bound");
