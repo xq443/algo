@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6e42e09-63ff-4d69-b0e5-c0d1f099df55" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MergeSort/ListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MergeSort/TreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MergeSort/balanceABinarySearchTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MergeSort/mergekSortedLists.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MergeSort/mergekSortedLists_v2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DFS/DFS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DFS/out/production/DFS/DFS.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sort.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sort.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/divideConquer/ListNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/divideConquer/TreeNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/divideConquer/balanceABinarySearchTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/divideConquer/mergekSortedLists.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/divideConquer/mergekSortedLists_v2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Sort/SortAnArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sort/SortAnArray.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,35 +31,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/cathyqin/IdeaProjects/algo/Sort&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/cathyqin/IdeaProjects/algo/Sort",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "build.tools",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.SortAnArray">
-    <configuration name="AllienDictionary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AllienDictionary" />
+}]]></component>
+  <component name="RunManager" selected="Application.QuickSort">
+    <configuration name="Kth_Largest_Element_in_an_Array_v3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Kth_Largest_Element_in_an_Array_v3" />
       <module name="Sort" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Kth_Largest_Element_in_an_Array_v3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Kth_Largest_Element_in_an_Array_v3" />
+    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="QuickSort" />
       <module name="Sort" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -96,11 +89,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.QuickSort" />
         <item itemvalue="Application.SortAnArray" />
         <item itemvalue="Application.topKFrequentElements_v2" />
         <item itemvalue="Application.topKFrequentElements_v3" />
         <item itemvalue="Application.Kth_Largest_Element_in_an_Array_v3" />
-        <item itemvalue="Application.AllienDictionary" />
       </list>
     </recent_temporary>
   </component>
@@ -114,7 +107,7 @@
       <updated>1697425917373</updated>
       <workItem from="1712475626429" duration="142000" />
       <workItem from="1712477519424" duration="880000" />
-      <workItem from="1713396549219" duration="896000" />
+      <workItem from="1713396549219" duration="2947000" />
     </task>
     <servers />
   </component>
