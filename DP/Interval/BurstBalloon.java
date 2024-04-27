@@ -1,6 +1,6 @@
 package Interval;
 
-public class burstBalloon {
+public class BurstBalloon {
     /**
      * if you burst the ith balloon, you will get nums[i - 1] * nums[i] * nums[i + 1] coins.
      * If i - 1 or i + 1 goes out of bounds of the array, then treat it as if there is a balloon with a 1 painted on it.
