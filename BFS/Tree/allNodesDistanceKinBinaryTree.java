@@ -1,16 +1,6 @@
-package Tree;
-
 import java.util.*;
 
 public class allNodesDistanceKinBinaryTree {
-    public static class TreeNode{
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x){
-            this.val = x;
-        };
-    }
     Map<TreeNode, List<TreeNode>> map = new HashMap<>();
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         List<Integer> ret = new ArrayList<>();
@@ -59,7 +49,7 @@ public class allNodesDistanceKinBinaryTree {
     public static void main(String[] args) {
         allNodesDistanceKinBinaryTree a = new allNodesDistanceKinBinaryTree();
         // Creating the binary tree nodes
-        allNodesDistanceKinBinaryTree.TreeNode root = new TreeNode(3);
+        TreeNode root = new TreeNode(3);
         root.left = new TreeNode(5);
         root.right = new TreeNode(1);
         root.left.left = new TreeNode(6);
@@ -70,7 +60,7 @@ public class allNodesDistanceKinBinaryTree {
         root.left.right.right = new TreeNode(4);
 
         // Setting up the target node and distance
-        allNodesDistanceKinBinaryTree.TreeNode target = root.left;
+        TreeNode target = root.left;
         int k = 2;
         // Calling the distanceK method
         List<Integer> result = a.distanceK(root, target, k);
