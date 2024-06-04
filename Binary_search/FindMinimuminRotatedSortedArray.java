@@ -16,12 +16,29 @@ public class FindMinimuminRotatedSortedArray {
       int mid = left + (right - left) / 2;
       if(nums[mid] > target) {
         left = mid + 1;
-      } else if(nums[mid] < target) {
+      } else
         right = mid - 1;
-      } else return nums[mid];
     }
     return nums[left];
   }
+
+  public int findMin2(int[] nums) {
+    int left = 0;
+    int right = nums.length - 1;
+    int target = nums[right];
+
+    while (left + 1 < right) {
+      int mid = left + (right - left) / 2;
+
+      if (nums[mid] > target) {
+        left = mid;
+      } else {
+        right = mid;
+      }
+    }
+    return Math.min(nums[left], nums[right]);
+  }
+
 
   public static void main(String[] args) {
     FindMinimuminRotatedSortedArray findMinimuminRotatedSortedArray =
