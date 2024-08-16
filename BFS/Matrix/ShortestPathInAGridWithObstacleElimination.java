@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Queue;
 
-public class shortestPathInAGridWithObstacleElimitation {
+public class ShortestPathInAGridWithObstacleElimitation {
 
-    public static int shortestPath(int[][] grid, int k){
+    public int ShortestPath(int[][] grid, int k){
         boolean[][][] visited = new boolean[40][40][1601];
         int[][] dir = {{1,0},{-1,0},{0,1}, {0,-1}};
 
@@ -22,6 +22,7 @@ public class shortestPathInAGridWithObstacleElimitation {
             int len = q.size();
             while(len -->0){
                 int[] curr = q.poll();
+                assert curr != null;
                 int x = curr[0];
                 int y = curr[1];
                 int z = curr[2];
@@ -35,11 +36,11 @@ public class shortestPathInAGridWithObstacleElimitation {
 
                     if(Objects.equals(grid[i][j], 1)) {
                         if(z == k) continue;
-                        if (visited[i][j][z + 1] == true) continue;
+                        if (visited[i][j][z + 1]) continue;
                         visited[i][j][z + 1] = true;
                         q.add(new int[]{i, j, z + 1});
                     }else {
-                        if (visited[i][j][z] == true) continue;
+                        if (visited[i][j][z]) continue;
                         visited[i][j][z] = true;
                         q.add(new int[]{i, j, z});
 
@@ -56,9 +57,11 @@ public class shortestPathInAGridWithObstacleElimitation {
     }
 
     public static void main(String[] args) {
+        ShortestPathInAGridWithObstacleElimitation shortestPathInAGridWithObstacleElimitation
+            = new ShortestPathInAGridWithObstacleElimitation();
         int[][] grid = {{0,0,0},{1,1,0},{0,0,0},{0,1,1},{0,0,0}};
         int k = 1;
-        System.out.println(shortestPath(grid,k));
+        System.out.println(shortestPathInAGridWithObstacleElimitation.ShortestPath(grid,k));
     }
 
 }
