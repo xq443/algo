@@ -1,3 +1,4 @@
+package HashTable;
 public class BetterCompression {
   public String betterCompression(String s) {
     long[] count = new long[200]; // frequency array

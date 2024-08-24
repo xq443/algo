@@ -1,3 +1,5 @@
+package HashTable;
+
 public class verifyinganAlienDictionary {
     public boolean isAlienSorted(String[] words, String order) {
         int[] charMap = new int[26];

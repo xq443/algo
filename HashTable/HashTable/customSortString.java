@@ -1,3 +1,4 @@
+package HashTable;
 public class customSortString {
     public String customSortString(String order, String s) {
         int [] charfrequency = new int [26];
