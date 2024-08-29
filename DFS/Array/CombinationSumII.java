@@ -18,8 +18,8 @@ public class CombinationSumII {
     if(target == 0) {
       ret.add(new ArrayList<>(sub));
     }
-    for (int i = index; i < nums.length - 1; i++) {
-      if(i != index && nums[i] == nums[i + 1]) continue;
+    for (int i = index; i < nums.length; i++) {
+      if(i > index && nums[i] == nums[i - 1]) continue;
       sub.add(nums[i]);
       combinationSumII_dfs(target - nums[i], nums, i + 1, sub, ret);
       sub.remove(sub.size() - 1);
