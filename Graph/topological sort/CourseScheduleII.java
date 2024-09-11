@@ -6,39 +6,41 @@ import java.util.Queue;
 public class CourseScheduleII {
 
   public int[] findOrder(int numCourses, int[][] prerequisites) {
-    List<List<Integer>> adjList = new ArrayList<>();
+    //build graph
+    List<List<Integer>> graph = new ArrayList<>();
     int[] inDegree = new int[numCourses];
-    //build up graph
+
     for (int i = 0; i < numCourses; i++) {
-      adjList.add(new ArrayList<>());
+      graph.add(new ArrayList<>());
     }
-    for(int[] prerequisite : prerequisites) {
+
+    for (int[] prerequisite : prerequisites) {
+      int pre = prerequisite[1];
       int course = prerequisite[0];
-      int prerequisiteCourse = prerequisite[1];
-      adjList.get(prerequisiteCourse).add(course);
+      graph.get(pre).add(course);
       inDegree[course]++;
     }
-    // bfs
-    Queue<Integer> queue = new LinkedList<>();
+
     int[] ret = new int[numCourses];
+    int idx = 0;
+    Queue<Integer> queue = new LinkedList<>();
     for (int i = 0; i < numCourses; i++) {
-      if(inDegree[i] == 0) {
+      if (inDegree[i] == 0) {
         queue.add(i);
+        ret[idx++] = i;
       }
     }
-    int idx = 0;
-    //topological sort
-    while(!queue.isEmpty()){
+    while (!queue.isEmpty()) {
       int curr = queue.poll();
       ret[idx++] = curr;
-      for(int next : adjList.get(curr)) {
+      for (int next : graph.get(curr)) {
         inDegree[next]--;
-        if(inDegree[next] == 0){
+        if (inDegree[next] == 0) {
           queue.add(next);
         }
       }
     }
-    if(idx == numCourses) return ret;
+    if (idx == numCourses) return ret;
     return new int[0];
   }
 
