@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class AllienDictionary {
+public class AlienDictionary {
   public String alienOrder(String[] words) {
     List<List<Integer>> adjList = new ArrayList<>();
     int[] inDegree = new int[26];
@@ -32,6 +32,7 @@ public class AllienDictionary {
           break;
         }
       }
+
       // word2 is prefix of word1
       if(flag == 0 && (word1.length()) > (word2.length())) return "";
     }
@@ -46,6 +47,7 @@ public class AllienDictionary {
       }
       if(inDegree[i] != -1) total++;
     }
+
     //perform topological sort
     while(!queue.isEmpty()) {
       int curr = queue.poll();
@@ -58,6 +60,7 @@ public class AllienDictionary {
         }
       }
     }
+
     // If all characters are visited, return the result
     return (total == ret.length()) ? ret.toString() : "";
   }
