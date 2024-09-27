@@ -3,7 +3,7 @@ package Tree;
 import java.util.LinkedList;
 import java.util.List;
 
-public class treeDiameter {
+public class TreeDiameter {
     int ret = 0;
     public int treeDiameter(int[][] edges) {
         int n = edges.length +1;
@@ -37,7 +37,7 @@ public class treeDiameter {
         return 1 +  Math.max(firstM, secondM);
     }
     public static void main(String[] args) {
-        treeDiameter t = new treeDiameter();
+        TreeDiameter t = new TreeDiameter();
         int[][] edges = {{0,1},{0,2}};
         int[][] edges1 = {{0,1},{1,2},{2,3},{1,4},{4,5}};
         System.out.println(t.treeDiameter(edges));
