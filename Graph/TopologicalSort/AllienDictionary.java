@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class AlienDictionary {
+public class AllienDictionary {
   public String alienOrder(String[] words) {
     List<List<Integer>> adjList = new ArrayList<>();
     int[] inDegree = new int[26];
@@ -66,6 +66,7 @@ public class AlienDictionary {
   }
 
   public static void main(String[] args) {
+
     String[] words = {"wrt","wrf","er","ett","rftt"};
     AllienDictionary allienDictionary = new AllienDictionary();
     System.out.println(allienDictionary.alienOrder(words));
