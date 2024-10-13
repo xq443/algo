@@ -40,7 +40,6 @@ public class YoungTableau {
     while(true) {
       if (i + 1 < m && matrix[i + 1][j] < curr) {
         minRow = i + 1;
-        minCol = j;
       }
       if (j + 1 < n && matrix[i][j + 1] < curr) {
         minRow = i;
