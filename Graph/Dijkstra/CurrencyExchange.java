@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,3 +64,8 @@ public class CurrencyExchange {
     System.out.println(obj.findBestExchangeRate(start, end, amount));
   }
 }
+
+//Time Complexity: O((V + E) log V)
+//Space Complexity: O(V + E)
+//V is the number of currencies (vertices)
+//E is the number of exchange rates (edges)
