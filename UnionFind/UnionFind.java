@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class UnionFind {
     int[] parent;
     int[] rank;
