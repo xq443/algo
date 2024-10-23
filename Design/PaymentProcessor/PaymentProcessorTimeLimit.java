@@ -13,14 +13,15 @@ public class PaymentProcessorTimeLimit {
 
   public String[] forAllIntentsAndPurposes(String[] commands) {
     for(String command : commands) {
-      int timestamp = Integer.parseInt(command.split(" ")[0]);
-      String action = command.split(" ")[1];
+      String[] response = command.split(" ");
+      int timestamp = Integer.parseInt(response[0]);
+      String action = response[1];
 
       switch (action) {
         case "INIT":
           String merchantId = command.split(" ")[2];
           double startingBalance = Double.parseDouble(command.split(" ")[3]);
-          int timeLimit = Integer.parseInt(command.split(" ")[4]);
+          int timeLimit = response.length > 4 ? Integer.parseInt(response[4]) : 0;
           initMerchants(merchantId, startingBalance, timeLimit);
           break;
         case "CREATE":
@@ -119,7 +120,7 @@ public class PaymentProcessorTimeLimit {
 
   public static void main(String[] args) {
     PaymentProcessorTimeLimit paymentProcessor = new PaymentProcessorTimeLimit();
-    String[] commands = {"1 INIT m1 0 5", "2 CREATE p1 m1 100", "3 CREATE p2 m1 50", "4 ATTEMPT p1", "5 ATTEMPT p2",
+    String[] commands = {"1 INIT m1 0 2", "2 CREATE p1 m1 100", "3 CREATE p2 m1 50", "4 ATTEMPT p1", "5 ATTEMPT p2",
         "8 SUCCEED p1", "10 SUCCEED p2", "11 REFUND p1", "16 REFUND p2"};
     System.out.println(Arrays.toString(paymentProcessor.forAllIntentsAndPurposes(commands)));
   }
