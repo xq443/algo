@@ -1,8 +1,9 @@
 package BinarySearchTree;
 
 public class Node {
-  int value;
-  Node left, right;
+  public int value;
+  public Node left;
+  public Node right;
   Node parent;
 
   public Node(int value, Node left, Node right) {
