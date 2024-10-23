@@ -11,15 +11,9 @@ public class Tweet {
     this.time = time;
   }
 
-  public int getTweetId() {
-    return tweetId;
-  }
+  public int getTweetId() { return tweetId; }
 
-  public Tweet getNext() {
-    return next;
-  }
+  public Tweet getNext() { return next; }
 
-  public int getTime() {
-    return time;
-  }
+  public int getTime() { return time; }
 }

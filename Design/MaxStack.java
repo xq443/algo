@@ -6,15 +6,13 @@ public class MaxStack {
 
   /**
    * Design a max stack data structure
-   * that supports the stack operations and supports finding the stack's maximum element.
-   * O(1) for each top call and O(logn) for each other call.
+   * that supports the stack operations and supports finding the stack's maximum
+   * element. O(1) for each top call and O(logn) for each other call.
    */
-  public class ListNode{
+  public class ListNode {
     ListNode prev, next;
     int value;
-    public ListNode(int value){
-      this.value = value;
-    }
+    public ListNode(int value) { this.value = value; }
   }
   ListNode head;
   TreeMap<Integer, List<ListNode>> map;
@@ -42,7 +40,7 @@ public class MaxStack {
     head.prev.next = node;
     head.prev = node;
 
-    map.computeIfAbsent(x , k -> new LinkedList<>()).add(node);
+    map.computeIfAbsent(x, k -> new LinkedList<>()).add(node);
   }
 
   /**
@@ -50,12 +48,13 @@ public class MaxStack {
    * @return
    */
   int pop() {
-    if(head.prev == head) return -1; // empty
+    if (head.prev == head)
+      return -1; // empty
     ListNode popped = head.prev;
     delete(popped);
 
     map.get(popped.value).removeLast();
-    if(map.get(popped.value).isEmpty()) {
+    if (map.get(popped.value).isEmpty()) {
       map.remove(popped.value);
     }
 
@@ -67,7 +66,8 @@ public class MaxStack {
    * @return
    */
   int top() {
-    if(head.prev == head) return -1; // empty
+    if (head.prev == head)
+      return -1; // empty
     return head.prev.value;
   }
 
@@ -75,9 +75,7 @@ public class MaxStack {
    * Retrieves the maximum element in the stack without removing it.
    * @return
    */
-  int peekMax() {
-    return map.lastKey();
-  }
+  int peekMax() { return map.lastKey(); }
 
   /**
    * Retrieves the maximum element in the stack and removes it.
@@ -100,14 +98,20 @@ public class MaxStack {
 
   public static void main(String[] args) {
     MaxStack stk = new MaxStack();
-    stk.push(5);   // [5] the top of the stack and the maximum number is 5.
-    stk.push(1);   // [5, 1] the top of the stack is 1, but the maximum is 5.
-    stk.push(5);   // [5, 1, 5] the top of the stack is 5, which is also the maximum, because it is the top most one.
-    System.out.println(stk.top());   // return 5, [5, 1, 5] the stack did not change.
-    System.out.println(stk.popMax());  // return 5, [5, 1] the stack is changed now, and the top is different from the max.
-    System.out.println(stk.top());     // return 1, [5, 1] the stack did not change.
-    System.out.println(stk.peekMax()); // return 5, [5, 1] the stack did not change.
-    System.out.println(stk.pop());    // return 1, [5] the top of the stack and the max element is now 5.
-    System.out.println(stk.top());   // return 5, [5] the stack did not change.
+    stk.push(5); // [5] the top of the stack and the maximum number is 5.
+    stk.push(1); // [5, 1] the top of the stack is 1, but the maximum is 5.
+    stk.push(5); // [5, 1, 5] the top of the stack is 5, which is also the
+                 // maximum, because it is the top most one.
+    System.out.println(
+        stk.top()); // return 5, [5, 1, 5] the stack did not change.
+    System.out.println(
+        stk.popMax()); // return 5, [5, 1] the stack is changed now, and the top
+                       // is different from the max.
+    System.out.println(stk.top()); // return 1, [5, 1] the stack did not change.
+    System.out.println(
+        stk.peekMax());            // return 5, [5, 1] the stack did not change.
+    System.out.println(stk.pop()); // return 1, [5] the top of the stack and the
+                                   // max element is now 5.
+    System.out.println(stk.top()); // return 5, [5] the stack did not change.
   }
 }

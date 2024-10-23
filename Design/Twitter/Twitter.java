@@ -14,19 +14,19 @@ public class Twitter {
    * Initializes your twitter object.
    */
   public Map<Integer, User> userMap;
-  public Twitter(){
+  public Twitter() {
     this.userMap = new HashMap<>();
     this.timestamp = 0;
   }
 
   /**
-   * Composes a new tweet with ID tweetId by the user userId. 
+   * Composes a new tweet with ID tweetId by the user userId.
    * Each call to this function will be made with a unique tweetId.
    * @param userId
    * @param tweetId
    */
   public void postTweet(int userId, int tweetId) {
-    if(!userMap.containsKey(userId)) {
+    if (!userMap.containsKey(userId)) {
       User newUser = new User(userId);
       userMap.put(userId, newUser);
     }
@@ -35,29 +35,33 @@ public class Twitter {
 
   /**
    * Retrieves the 10 most recent tweet IDs in the user's news feed.
-   * Each item in the news feed must be posted by users who the user followed or by the user themselves.
-   * Tweets must be ordered from most recent to least recent.
+   * Each item in the news feed must be posted by users who the user followed or
+   * by the user themselves. Tweets must be ordered from most recent to least
+   * recent.
    * @param userId
    * @return
    */
   public List<Integer> getNewsFeed(int userId) {
     List<Integer> ret = new ArrayList<>();
-    if(!userMap.containsKey(userId)) return ret;
+    if (!userMap.containsKey(userId))
+      return ret;
 
     Set<Integer> following = userMap.get(userId).following;
-    PriorityQueue<Tweet> queue = new PriorityQueue<>((a, b) -> (b.time - a.time));
+    PriorityQueue<Tweet> queue =
+        new PriorityQueue<>((a, b) -> (b.time - a.time));
 
-    for(int person : following){
+    for (int person : following) {
       Tweet tweet = userMap.get(person).head;
-      if(tweet != null) queue.offer(tweet);
+      if (tweet != null)
+        queue.offer(tweet);
     }
 
     int count = 0;
-    while(!queue.isEmpty() && count < 10) {
+    while (!queue.isEmpty() && count < 10) {
       Tweet tweet = queue.poll();
       ret.add(tweet.tweetId);
       count++;
-      if(tweet.next != null) {
+      if (tweet.next != null) {
         queue.offer(tweet.next);
       }
     }
@@ -81,15 +85,15 @@ public class Twitter {
   }
 
   /**
-   * The user with ID followerId started unfollowing the user with ID followeeId.
+   * The user with ID followerId started unfollowing the user with ID
+   * followeeId.
    * @param followerId
    * @param followeeId
    */
   void unfollow(int followerId, int followeeId) {
-    if(!userMap.containsKey(followerId) || followerId == followeeId) return;
+    if (!userMap.containsKey(followerId) || followerId == followeeId)
+      return;
     userMap.get(followerId).unfollow(followeeId);
   }
-  public Map<Integer, User> getUserMap() {
-    return userMap;
-  }
+  public Map<Integer, User> getUserMap() { return userMap; }
 }

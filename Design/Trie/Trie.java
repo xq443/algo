@@ -6,9 +6,7 @@ public class Trie {
   /**
    * Initializes the trie object.
    */
-  public Trie() {
-    this.root = new TrieNode();
-  }
+  public Trie() { this.root = new TrieNode(); }
 
   /**
    * Inserts the string word into the trie.
@@ -17,9 +15,9 @@ public class Trie {
   public void insert(String word) {
     TrieNode node = root;
     node.count++;
-    for(char c : word.toCharArray()) {
+    for (char c : word.toCharArray()) {
       int index = c - 'a';
-      if(node.children[index] == null) {
+      if (node.children[index] == null) {
         node.children[index] = new TrieNode();
       }
       node = node.children[index];
@@ -30,7 +28,8 @@ public class Trie {
   }
 
   /**
-   * Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
+   * Returns true if the string word is in the trie (i.e., was inserted before),
+   * and false otherwise.
    * @param word
    * @return
    */
@@ -40,7 +39,8 @@ public class Trie {
   }
 
   /**
-   * Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
+   * Returns true if there is a previously inserted string word that has the
+   * prefix prefix, and false otherwise.
    * @param prefix
    * @return
    */
@@ -59,7 +59,8 @@ public class Trie {
   }
 
   /**
-   * Returns the number of strings in the trie that have the string prefix as a prefix.
+   * Returns the number of strings in the trie that have the string prefix as a
+   * prefix.
    * @param prefix
    * @return
    */
@@ -87,13 +88,15 @@ public class Trie {
    * Searches for the node in the trie that corresponds to the given prefix.
    *
    * @param word The prefix to search for.
-   * @return The TrieNode representing the last character of the prefix if found, null otherwise.
+   * @return The TrieNode representing the last character of the prefix if
+   *     found, null otherwise.
    */
   public TrieNode searchPrefix(String word) {
     TrieNode node = root;
-    for(char ch : word.toCharArray()) {
+    for (char ch : word.toCharArray()) {
       int idx = ch - 'a';
-      if(node.children[idx] == null) return null;
+      if (node.children[idx] == null)
+        return null;
       node = node.children[idx];
     }
     return node;

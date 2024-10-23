@@ -10,8 +10,8 @@ public class OnlineElection {
   int[] times;
 
   /**
-   * TopVotedCandidate(int[] persons, int[] times) : Initializes the object with the persons and
-   * times arrays.
+   * TopVotedCandidate(int[] persons, int[] times) : Initializes the object with
+   * the persons and times arrays.
    * @param persons
    * @param times
    */
@@ -26,7 +26,7 @@ public class OnlineElection {
       int votes = map.getOrDefault(person, 0) + 1;
       map.put(person, votes);
 
-      if(maxVotes <= votes) {
+      if (maxVotes <= votes) {
         maxVotes = votes;
         leader = person;
       }
@@ -35,20 +35,21 @@ public class OnlineElection {
   }
 
   /**
-   * int q(int t) Returns the number of the person that was leading the election at time t
-   * according to the mentioned rules.
+   * int q(int t) Returns the number of the person that was leading the election
+   * at time t according to the mentioned rules.
    * @param t
    * @return
    */
 
   public int q(int t) {
     int left = 0, right = persons.length - 1;
-    while(left < right) {
+    while (left < right) {
       int mid = left + (right - left) / 2;
-      if(times[mid] == t) return lead[mid];
-      else if(times[mid] > t) {
+      if (times[mid] == t)
+        return lead[mid];
+      else if (times[mid] > t) {
         right = mid;
-      }else{
+      } else {
         left = mid + 1;
       }
     }

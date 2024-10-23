@@ -5,9 +5,7 @@ public class OnlineStockSpan {
   /**
    * Initializes the object of the class.
    */
-  public OnlineStockSpan() {
-    this.stack = new Stack<>();
-  }
+  public OnlineStockSpan() { this.stack = new Stack<>(); }
 
   /**
    * Returns the span of the stock's price given that today's price is price.
@@ -16,10 +14,10 @@ public class OnlineStockSpan {
    */
   public int next(int price) {
     int ret = 1;
-    while(!stack.isEmpty() && stack.peek()[0] <= price){
+    while (!stack.isEmpty() && stack.peek()[0] <= price) {
       ret += stack.pop()[1];
     }
-    stack.push(new int[]{price, ret});
+    stack.push(new int[] {price, ret});
     return ret;
   }
 

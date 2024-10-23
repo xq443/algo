@@ -14,13 +14,9 @@ public class User {
     this.head = null;
     follow(userId);
   }
-  public void follow(int followerId) {
-    following.add(followerId);
-  }
-  public void unfollow(int followerId) {
-    following.remove(followerId);
-  }
-  public void post(int id, int timestamp){
+  public void follow(int followerId) { following.add(followerId); }
+  public void unfollow(int followerId) { following.remove(followerId); }
+  public void post(int id, int timestamp) {
     Tweet newTweet = new Tweet(id, timestamp);
     newTweet.next = head;
     head = newTweet;

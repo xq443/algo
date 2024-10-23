@@ -25,9 +25,7 @@ public class SnapShotArray {
    * @param index
    * @param val
    */
-  public void set(int index, int val) {
-    list.get(index).put(snapId, val);
-  }
+  public void set(int index, int val) { list.get(index).put(snapId, val); }
 
   /**
    * takes a snapshot of the array and returns the snap_id:
@@ -60,11 +58,11 @@ public class SnapShotArray {
     snapShotArray.set(1, 5);
     System.out.println(snapShotArray.snap()); // 0
     snapShotArray.set(1, 10);
-    System.out.println(snapShotArray.snap()); // 1
+    System.out.println(snapShotArray.snap());    // 1
     System.out.println(snapShotArray.get(1, 0)); // 5
     System.out.println(snapShotArray.get(1, 3)); // 10
   }
-  //Index 0: {}
-  //Index 1: {0: 5, 1: 10}   // Snapshot ID: 0, Value: 5; Snapshot ID: 1, Value: 10
-  //Index 2: {}
+  // Index 0: {}
+  // Index 1: {0: 5, 1: 10}   // Snapshot ID: 0, Value: 5; Snapshot ID: 1,
+  // Value: 10 Index 2: {}
 }

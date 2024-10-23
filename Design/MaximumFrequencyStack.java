@@ -25,7 +25,7 @@ public class MaximumFrequencyStack {
     map.put(val, map.getOrDefault(val, 0) + 1);
     int freq = map.get(val);
 
-    if(freq > bucket.size()) {
+    if (freq > bucket.size()) {
       bucket.add(new Stack<>());
     }
     bucket.get(freq - 1).push(val);
@@ -41,11 +41,11 @@ public class MaximumFrequencyStack {
     int freq = bucket.size();
     int ret = bucket.get(freq - 1).pop();
     // the empty stack
-    if(bucket.get(freq - 1).isEmpty()) {
+    if (bucket.get(freq - 1).isEmpty()) {
       bucket.remove(bucket.size() - 1);
     }
     // the empty map
-    if(map.get(ret) == 0) {
+    if (map.get(ret) == 0) {
       map.remove(ret);
     }
     return ret;
@@ -53,16 +53,22 @@ public class MaximumFrequencyStack {
 
   public static void main(String[] args) {
     MaximumFrequencyStack freqStack = new MaximumFrequencyStack();
-    freqStack.push(5); // The stack is [5]
-    freqStack.push(7); // The stack is [5,7]
-    freqStack.push(5); // The stack is [5,7,5]
-    freqStack.push(7); // The stack is [5,7,5,7]
-    freqStack.push(4); // The stack is [5,7,5,7,4]
-    freqStack.push(5); // The stack is [5,7,5,7,4,5]
-    System.out.println(freqStack.pop()); // return 5, as 5 is the most frequent. The stack becomes [5,7,5,7,4].
-    System.out.println(freqStack.pop());   // return 7, as 5 and 7 is the most frequent, but 7 is closest to the top. The stack becomes [5,7,5,4].
-    System.out.println(freqStack.pop());   // return 5, as 5 is the most frequent. The stack becomes [5,7,4].
-    System.out.println(freqStack.pop());   // return 4, as 4, 5 and 7 is the most frequent, but 4 is closest to the top. The stack becomes [5,7].
+    freqStack.push(5);                   // The stack is [5]
+    freqStack.push(7);                   // The stack is [5,7]
+    freqStack.push(5);                   // The stack is [5,7,5]
+    freqStack.push(7);                   // The stack is [5,7,5,7]
+    freqStack.push(4);                   // The stack is [5,7,5,7,4]
+    freqStack.push(5);                   // The stack is [5,7,5,7,4,5]
+    System.out.println(freqStack.pop()); // return 5, as 5 is the most frequent.
+                                         // The stack becomes [5,7,5,7,4].
+    System.out.println(
+        freqStack.pop()); // return 7, as 5 and 7 is the most frequent, but 7 is
+                          // closest to the top. The stack becomes [5,7,5,4].
+    System.out.println(freqStack.pop()); // return 5, as 5 is the most frequent.
+                                         // The stack becomes [5,7,4].
+    System.out.println(
+        freqStack.pop()); // return 4, as 4, 5 and 7 is the most frequent, but 4
+                          // is closest to the top. The stack becomes [5,7].
   }
 }
 

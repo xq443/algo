@@ -1,8 +1,9 @@
 package LFU;
 
 /**
- * Represents a doubly linked list used in the LFU (Least Frequently Used) cache.
- * This linked list maintains a reference to both the head and tail nodes.
+ * Represents a doubly linked list used in the LFU (Least Frequently Used)
+ * cache. This linked list maintains a reference to both the head and tail
+ * nodes.
  */
 
 public class DoublyLinkedList {
@@ -12,7 +13,8 @@ public class DoublyLinkedList {
   /**
    * Constructs a new doubly linked list with dummy head and tail nodes.
    * The head and tail nodes are initialized with key and value of -1.
-   * The head node's next points to the tail node, and the tail node's prev points to the head node.
+   * The head node's next points to the tail node, and the tail node's prev
+   * points to the head node.
    */
   public DoublyLinkedList() {
     // dummy end node
@@ -51,11 +53,11 @@ public class DoublyLinkedList {
    * @return The tail node of the list.
    */
   public Node removeTail() {
-    if(isEmpty()) return null;
+    if (isEmpty())
+      return null;
     Node toRemove = tail.prev;
     removeNode(toRemove);
     return toRemove;
-
   }
 
   /**
@@ -63,7 +65,5 @@ public class DoublyLinkedList {
    *
    * @return true if the list is empty, false otherwise.
    */
-  public boolean isEmpty() {
-    return head.next == tail;
-  }
+  public boolean isEmpty() { return head.next == tail; }
 }
