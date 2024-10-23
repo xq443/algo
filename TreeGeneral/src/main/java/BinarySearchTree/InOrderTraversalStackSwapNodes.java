@@ -16,9 +16,7 @@ public class InOrderTraversalStackSwapNodes {
     while (!stack.isEmpty()) {
       current = stack.pop();
       if(pre != null && pre.value > current.value) {
-        if(first == null) {
-          first = pre;
-        }
+        first = pre;
         second = current;
       }
       Node next = current.right;
