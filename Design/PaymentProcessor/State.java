@@ -5,6 +5,5 @@ public enum State {
   PROCESSING,
   SUCCEEDED,
   COMPLETED
-
 }
 
