@@ -7,46 +7,48 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class PaymentProcessor {
+public class PaymentProcessorTimeLimit {
   Map<String, Merchant> merchants = new HashMap<>();
   Map<String, PaymentIntent> payments = new HashMap<>();
 
   public String[] forAllIntentsAndPurposes(String[] commands) {
     for(String command : commands) {
-      String action = command.split(" ")[0];
+      int timestamp = Integer.parseInt(command.split(" ")[0]);
+      String action = command.split(" ")[1];
 
       switch (action) {
         case "INIT":
-          String merchantId = command.split(" ")[1];
-          double startingBalance = Double.parseDouble(command.split(" ")[2]);
-          initMerchants(merchantId, startingBalance);
+          String merchantId = command.split(" ")[2];
+          double startingBalance = Double.parseDouble(command.split(" ")[3]);
+          int timeLimit = Integer.parseInt(command.split(" ")[4]);
+          initMerchants(merchantId, startingBalance, timeLimit);
           break;
         case "CREATE":
-          String paymentIntentId = command.split(" ")[1];
-          merchantId = command.split(" ")[2];
-          double amount = Double.parseDouble(command.split(" ")[3]);
+          String paymentIntentId = command.split(" ")[2];
+          merchantId = command.split(" ")[3];
+          double amount = Double.parseDouble(command.split(" ")[4]);
           createPayments(paymentIntentId, merchantId, amount);
           break;
         case "ATTEMPT":
-          paymentIntentId = command.split(" ")[1];
+          paymentIntentId = command.split(" ")[2];
           attemptPayment(paymentIntentId);
           break;
         case "SUCCEED":
-          paymentIntentId = command.split(" ")[1];
-          succeed(paymentIntentId);
+          paymentIntentId = command.split(" ")[2];
+          succeed(paymentIntentId, timestamp);
           break;
         case "UPDATE":
-          paymentIntentId = command.split(" ")[1];
-          double newAmount = Double.parseDouble(command.split(" ")[2]);
+          paymentIntentId = command.split(" ")[2];
+          double newAmount = Double.parseDouble(command.split(" ")[3]);
           update(paymentIntentId, newAmount);
           break;
         case "FAIL":
-          paymentIntentId = command.split(" ")[1];
+          paymentIntentId = command.split(" ")[2];
           fail(paymentIntentId);
           break;
         case "REFUND":
-          paymentIntentId = command.split(" ")[1];
-          refund(paymentIntentId);
+          paymentIntentId = command.split(" ")[2];
+          refund(paymentIntentId, timestamp);
           break;
       }
     }
@@ -57,9 +59,9 @@ public class PaymentProcessor {
     return ret.toArray(new String[0]);
   }
 
-  public void initMerchants(String merchantId, double startingBalance) {
+  public void initMerchants(String merchantId, double startingBalance, int timeLimit) {
     if(!merchants.containsKey(merchantId)) {
-      merchants.put(merchantId, new Merchant(merchantId, startingBalance));
+      merchants.put(merchantId, new Merchant(merchantId, startingBalance, timeLimit));
     }
   }
 
@@ -76,13 +78,14 @@ public class PaymentProcessor {
     }
   }
 
-  public void succeed(String paymentId) {
+  public void succeed(String paymentId, int succeedTimestamp) {
     PaymentIntent paymentIntent = payments.get(paymentId);
     if(paymentIntent != null && Objects.equals(paymentIntent.state, State.PROCESSING)) {
       paymentIntent.state = State.COMPLETED;
       Merchant merchant = merchants.get(paymentIntent.merchantID);
       if(merchant != null) {
         merchant.balance += paymentIntent.amount;
+        paymentIntent.succeedTimestamp = succeedTimestamp;
       }
     }
   }
@@ -101,26 +104,23 @@ public class PaymentProcessor {
     }
   }
 
-  public void refund(String paymentId) {
+  public void refund(String paymentId, int timestamp) {
     PaymentIntent paymentIntent = payments.get(paymentId);
     if(paymentIntent != null && paymentIntent.state == State.COMPLETED && paymentIntent.isNotRefunded) {
       Merchant merchant = merchants.get(paymentIntent.merchantID);
       if(merchant != null) {
-        merchant.balance -= paymentIntent.amount;
-        paymentIntent.isNotRefunded = false;
+        if(merchant.timeLimit == 0 || (timestamp - paymentIntent.succeedTimestamp <= merchant.timeLimit)) {
+          merchant.balance -= paymentIntent.amount;
+          paymentIntent.isNotRefunded = false;
+        }
       }
     }
   }
 
   public static void main(String[] args) {
-    PaymentProcessor paymentProcessor1 = new PaymentProcessor();
-    PaymentProcessor paymentProcessor2 = new PaymentProcessor();
-    PaymentProcessor paymentProcessor3 = new PaymentProcessor();
-    String[] commands = {"INIT m1 0", "INIT m2 10", "CREATE p1 m1 50", "ATTEMPT p1", "SUCCEED p1", "SUCCEED p1", "CREATE p2 m2 100", "ATTEMPT p2"};
-    String[] commands2 = {"INIT m1 0", "CREATE p1 m1 50", "UPDATE p1 100",  "ATTEMPT p1", "SUCCEED p1"};
-    String[] commands3 = {"INIT m1 0", "CREATE p1 m1 50",  "ATTEMPT p1",  "FAIL p1",  "ATTEMPT p1",  "SUCCEED p1",   "CREATE p2 m1 100",  "ATTEMPT p2", "SUCCEED p2", "REFUND p2"};
-    System.out.println(Arrays.toString(paymentProcessor1.forAllIntentsAndPurposes(commands)));
-    System.out.println(Arrays.toString(paymentProcessor2.forAllIntentsAndPurposes(commands2)));
-    System.out.println(Arrays.toString(paymentProcessor3.forAllIntentsAndPurposes(commands3)));
+    PaymentProcessorTimeLimit paymentProcessor = new PaymentProcessorTimeLimit();
+    String[] commands = {"1 INIT m1 0 5", "2 CREATE p1 m1 100", "3 CREATE p2 m1 50", "4 ATTEMPT p1", "5 ATTEMPT p2",
+        "8 SUCCEED p1", "10 SUCCEED p2", "11 REFUND p1", "16 REFUND p2"};
+    System.out.println(Arrays.toString(paymentProcessor.forAllIntentsAndPurposes(commands)));
   }
 }
