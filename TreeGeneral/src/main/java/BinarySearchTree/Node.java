@@ -15,5 +15,13 @@ public class Node {
   public Node(int value) {
     this.value = value;
   }
+
+
+  public Node(int value, Node left, Node right, Node parent) {
+    this.value = value;
+    this.left = left;
+    this.right = right;
+    this.parent = parent;
+  }
 }
 
