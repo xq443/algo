@@ -87,7 +87,7 @@ public class ExchangeRateBestPath {
 
   public static void main(String[] args) {
     ExchangeRateBestPath exchangeRate = new ExchangeRateBestPath();
-    String input = "USD:CAD:1.26,USD:AUD:0.75,USD:JPY:109.23,CAD:JPY:90";
+    String input = "USD:CAD:1.26,USD:AUD:0.75,USD:JPY:10,CAD:JPY:90";
 
     // Finding best rate for specific pairs
     System.out.println("Best exchange rate from USD to JPY: " + exchangeRate.findBestExchangeRate(input, "USD", "JPY"));
