@@ -11,17 +11,20 @@ class ShippingCaculator:
         
         total_cost = 0
         
+        # search our target json by using the country index
         country_shipping_cost = self.shipping_cost.get(country)
         if country_shipping_cost is None:
             raise ValueError(f"Shipping cost not found for country {country}")
         
         
         cost_mapping = {}
+        # extract the product cost and build up the dic
         for item in country_shipping_cost:
             product = item["product"]
             cost = item["cost"]
             cost_mapping[product] = cost
         
+        # calculate the total cost by using the cost_mappning
         for item in products:
             product = item["product"]
             quantity = item["quantity"]

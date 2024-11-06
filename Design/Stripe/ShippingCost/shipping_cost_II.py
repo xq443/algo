@@ -118,7 +118,6 @@ if __name__ == "__main__":
     # Create a ShippingCalculator instance for US order
     shipping_calculator_us = ShippingCalculator(order_us, shipping_cost)
 
-    # Calculate the total shipping cost for US
     try:
         total_shipping_cost_us = shipping_calculator_us.calculate_shipping_cost()
         print(f"Total shipping cost for US order: ${total_shipping_cost_us}")
@@ -128,7 +127,6 @@ if __name__ == "__main__":
     # Create a ShippingCalculator instance for CA order
     shipping_calculator_ca = ShippingCalculator(order_ca, shipping_cost)
 
-    # Calculate the total shipping cost for CA
     try:
         total_shipping_cost_ca = shipping_calculator_ca.calculate_shipping_cost()
         print(f"Total shipping cost for CA order: ${total_shipping_cost_ca}")
