@@ -1,4 +1,4 @@
-package ExchangeCurrency;
+package Stripe.ExchangeCurrency;
 
 import java.util.*;
 
@@ -31,17 +31,20 @@ public class ExchangeRateBestPath {
   }
 
   // Method to find the best exchange rate for a specific currency-to-currency pair
-  public Double findBestExchangeRate(String input, String fromCurrency, String toCurrency) {
+  public Double findBestExchangeRate(String input, String fromCurrency, String toCurrency)
+      throws Exception {
     buildMap(input);
 
     // Priority queue to keep track of the max rate path
     PriorityQueue<Edge> queue = new PriorityQueue<>((a, b) -> Double.compare(b.rate, a.rate));
     queue.add(new Edge(1.0, fromCurrency));
 
-
     // Map to keep track of the path for reconstruction
     Map<String, String> parent = new HashMap<>();
+
+    // track the highest rate achievable for the currency
     double bestRate = 0.0;
+
     while (!queue.isEmpty()) {
       Edge edge = queue.poll();
       String currency = edge.node;
@@ -65,14 +68,12 @@ public class ExchangeRateBestPath {
         }
       }
     }
-
     // Print the path if a valid route was found
     if (bestRate > 0) {
       printPath(parent, fromCurrency, toCurrency); // Print the path
-    } else {
-      System.out.println("No path found from " + fromCurrency + " to " + toCurrency);
+      return bestRate;
     }
-    return bestRate;
+    throw new Exception("No path found from " + fromCurrency + " to " + toCurrency);
   }
 
   // Method to print the path from start to end
@@ -85,7 +86,8 @@ public class ExchangeRateBestPath {
     System.out.println("Path: " + String.join("->", path));
   }
 
-  public static void main(String[] args) {
+
+  public static void main(String[] args) throws Exception {
     ExchangeRateBestPath exchangeRate = new ExchangeRateBestPath();
     String input = "USD:CAD:1.26,USD:AUD:0.75,USD:JPY:10,CAD:JPY:90";
 

@@ -1,4 +1,4 @@
-package Cost;
+package Stripe.Cost;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,18 +41,21 @@ public class MultipleIntermediates {
     }
   }
 
-  public String CostMultiIntermediate(String input, String output) {
+  public String CostMultiIntermediate(String input, String src, String dest, String method) throws Exception {
     buildMap(input);
 
     // Example format for `output`: "US:BR"
-    String[] params = output.split(":");
-    String src = params[0];
-    String dest = params[1];
 
     Set<String> visited = new HashSet<>();
     List<String> ret = new ArrayList<>();
     dfs(src, dest, 0, visited, new StringBuilder(src), new StringBuilder(), ret);
-    return ret.isEmpty() ? generateOutput(null, null, -1) : String.join(",\n", ret);
+
+    // If no valid route is found, throw an exception
+    if (ret.isEmpty()) {
+      throw new Exception("No valid route found from " + src + " to " + dest);
+    }
+
+    return String.join(",\n", ret); // Return all valid routes found
   }
 
   public void dfs(String src, String dest, int cost, Set<String> visited,
@@ -90,21 +93,20 @@ public class MultipleIntermediates {
   public String generateOutput(String route, String method, int cost) {
     StringBuilder result = new StringBuilder();
     result.append("{\n");
-    if (route != null) {
-      result.append(" \"route\": \"").append(route).append("\",\n");
-      result.append(" \"method\": \"").append(method).append("\",\n");
-      result.append(" \"cost\": ").append(cost).append("\n");
-    } else {
-      result.append(" \"error\": \"No valid route found.\"\n");
-    }
+    result.append(" \"route\": \"").append(route).append("\",\n");
+    result.append(" \"method\": \"").append(method).append("\",\n");
+    result.append(" \"cost\": ").append(cost).append("\n");
+
     result.append("}");
     return result.toString();
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     MultipleIntermediates mi = new MultipleIntermediates();
     String input = "US:CA:Car:300,CA:MX:Bus:200,MX:BR:Flight:800";
-    String output = "US:BR";
-    System.out.println(mi.CostMultiIntermediate(input, output));
+    String src = "US";
+    String dest = "BR";
+    String method = "Car";
+    System.out.println(mi.CostMultiIntermediate(input, src, dest, method));
   }
 }

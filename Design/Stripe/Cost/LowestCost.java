@@ -1,4 +1,4 @@
-package Cost;
+package Stripe.Cost;
 
 import java.util.*;
 
@@ -32,10 +32,8 @@ public class LowestCost {
     }
   }
 
-  public int lowestCost(String input, String output) throws Exception {
+  public int lowestCost(String input, String src, String dest, String method) throws Exception {
     buildMap(input);
-    String src = output.split(":")[0];
-    String dest = output.split(":")[1];
 
     PriorityQueue<Edge> queue = new PriorityQueue<>(Comparator.comparingInt(e -> e.cost));
     queue.offer(new Edge(src, 0));
@@ -90,8 +88,10 @@ public class LowestCost {
     try {
       LowestCost lc = new LowestCost();
       String input = "US:CA:Car:300,CA:MX:Bus:200,MX:BR:Flight:800,US:BR:KJ:2";
-      String output = "US:BR";
-      System.out.println("Lowest cost: " + lc.lowestCost(input, output));
+      String src = "US";
+      String dest = "BR";
+      String method = "Car";
+      System.out.println("Lowest cost: " + lc.lowestCost(input, src, dest, method));
     } catch(Exception e) {
       System.out.println(e.getMessage());
     }

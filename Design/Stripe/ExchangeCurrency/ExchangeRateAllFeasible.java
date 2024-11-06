@@ -1,4 +1,4 @@
-package ExchangeCurrency;
+package Stripe.ExchangeCurrency;
 
 import java.util.*;
 

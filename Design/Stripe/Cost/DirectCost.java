@@ -1,4 +1,4 @@
-package Cost;
+package Stripe.Cost;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,36 +35,26 @@ public class DirectCost {
       String method = response[2];
       int cost = Integer.parseInt(response[3]);
       map.computeIfAbsent(src, k -> new ArrayList<>()).add(new Edge(src, dest, method, cost));
-      map.computeIfAbsent(dest, k -> new ArrayList<>()).add(new Edge(dest, src, method, cost));
+      //map.computeIfAbsent(dest, k -> new ArrayList<>()).add(new Edge(dest, src, method, cost));
     }
   }
 
-  public int CostDirect(String input, String output) throws Exception {
+  public int CostDirect(String input, String src, String dest, String method) throws Exception {
     buildMap(input);
-    int retCost = Integer.MAX_VALUE;
 
     // parse the output: "UK:US:DHL"
-    String[] group = output.split(":");
-    String src = group[0];
-    String dest = group[1];
-
     if (map.containsKey(src)) {
       for (Edge next : map.get(src)) {
-        if (next.dest.equals(dest)) {
-          retCost = next.cost;
+        if (next.dest.equals(dest) && next.method.equals(method)) {
+          return next.cost;
         }
       }
     }
-    return retCost;
+    throw new Exception("No valid route found");
   }
 
-  public String CostOneIntermediate(String input, String output) {
+  public String CostOneIntermediate(String input, String src, String dest, String method) throws Exception {
     buildMap(input);
-
-    // parse the output: "UK:US:DHL"
-    String[] group = output.split(":");
-    String src = group[0];
-    String dest = group[1];
 
     // Check for one intermediate
     if (map.containsKey(src)) {
@@ -79,19 +69,17 @@ public class DirectCost {
         }
       }
     }
-    return generateOutput(null, null, 0); // No valid route found
+    throw new Exception("No valid route found");
   }
 
   public String generateOutput(String route, String method, int cost) {
     StringBuilder result = new StringBuilder();
     result.append("{\n");
-    if (route != null) {
-      result.append(" \"route\": \"").append(route).append("\",\n");
-      result.append(" \"method\": \"").append(method).append("\",\n");
-      result.append(" \"cost\": ").append(cost).append("\n");
-    } else {
-      result.append(" error: \"No valid route found.\"\n");
-    }
+
+    result.append("     \"route\": \"").append(route).append("\",\n");
+    result.append("     \"method\": \"").append(method).append("\",\n");
+    result.append("     \"cost\": ").append(cost).append("\n");
+
     result.append("}");
     return result.toString();
   }
@@ -100,10 +88,11 @@ public class DirectCost {
     try {
       DirectCost cost = new DirectCost();
       String input = "US:UK:UPS:4,US:UK:DHL:5,UK:CA:FedEx:10,AU:JP:DHL:20,US:JP:DHL:20,CA:JP:DHL:20";
-      String directOutput = "UK:US:DHL";
-      String intermediateOutput = "US:CA";
-      System.out.println(cost.CostDirect(input, directOutput));
-      String outputIntermediate = cost.CostOneIntermediate(input, intermediateOutput);
+      String src = "US";
+      String dest = "CA";
+      String method = "FedEx";
+//      System.out.println(cost.CostDirect(input, src, dest, method));
+      String outputIntermediate = cost.CostOneIntermediate(input, src, dest, method);
       System.out.println(outputIntermediate); // Print the output for one intermediate
     } catch (Exception e) {
       System.out.println(e.getMessage());
