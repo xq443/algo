@@ -93,5 +93,6 @@ public class ExchangeRateDirect {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+
   }
 }

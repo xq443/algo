@@ -107,6 +107,10 @@ public class MultipleIntermediates {
     String src = "US";
     String dest = "BR";
     String method = "Car";
-    System.out.println(mi.CostMultiIntermediate(input, src, dest, method));
+    try {
+      System.out.println(mi.CostMultiIntermediate(input, src, dest, method));
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 }

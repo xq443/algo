@@ -4,11 +4,11 @@ import java.util.*;
 
 public class LowestCost {
   public static class Edge {
-    String dest;
+    String node;
     int cost;
 
     public Edge(String dest, int cost) {
-      this.dest = dest;
+      this.node = dest;
       this.cost = cost;
     }
   }
@@ -35,10 +35,11 @@ public class LowestCost {
   public int lowestCost(String input, String src, String dest, String method) throws Exception {
     buildMap(input);
 
+    // min heap to sort the queue by cost in asc order
     PriorityQueue<Edge> queue = new PriorityQueue<>(Comparator.comparingInt(e -> e.cost));
     queue.offer(new Edge(src, 0));
 
-    Map<String, Integer> minCosts = new HashMap<>(); // Track minimum costs
+    Map<String, Integer> minCosts = new HashMap<>(); // map: Track minimum costs for each place(node)
     minCosts.put(src, 0);
 
     Map<String, String> parent = new HashMap<>(); // Track the path
@@ -46,7 +47,7 @@ public class LowestCost {
 
     while (!queue.isEmpty()) {
       Edge edge = queue.poll();
-      String curr = edge.dest;
+      String curr = edge.node;
       int currCost = edge.cost;
 
       if (visited.contains(curr)) continue;
@@ -63,10 +64,10 @@ public class LowestCost {
           int newCost = currCost + neighbor.cost;
 
           // Only consider this path if it’s the lowest cost path to the neighbor so far
-          if (newCost < minCosts.getOrDefault(neighbor.dest, Integer.MAX_VALUE)) {
-            minCosts.put(neighbor.dest, newCost);
-            queue.offer(new Edge(neighbor.dest, newCost));
-            parent.put(neighbor.dest, curr); // Track path for later reconstruction
+          if (newCost < minCosts.getOrDefault(neighbor.node, Integer.MAX_VALUE)) {
+            minCosts.put(neighbor.node, newCost);
+            queue.offer(new Edge(neighbor.node, newCost));
+            parent.put(neighbor.node, curr); // Track path for later reconstruction
           }
         }
       }
