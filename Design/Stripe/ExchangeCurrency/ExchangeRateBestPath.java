@@ -71,7 +71,7 @@ public class ExchangeRateBestPath {
     // Print the path if a valid route was found
     if (bestRate > 0) {
       printPath(parent, fromCurrency, toCurrency); // Print the path
-      return bestRate;
+      return Math.round(bestRate * 100.0) / 100.0;
     }
     throw new Exception("No path found from " + fromCurrency + " to " + toCurrency);
   }
@@ -89,7 +89,7 @@ public class ExchangeRateBestPath {
 
   public static void main(String[] args) throws Exception {
     ExchangeRateBestPath exchangeRate = new ExchangeRateBestPath();
-    String input = "USD:CAD:1.26,USD:AUD:0.75,USD:JPY:10,CAD:JPY:90";
+    String input = "USD:CAD:1.26,USD:AUD:0.75,USD:JPY:10000,CAD:JPY:90";
 
     // Finding best rate for specific pairs
     System.out.println("Best exchange rate from USD to JPY: " + exchangeRate.findBestExchangeRate(input, "USD", "JPY"));

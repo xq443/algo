@@ -31,18 +31,8 @@ public class ExchangeRateAllFeasible {
   }
 
   // Method to find and print all exchange rate combinations between two currencies
-  public void ExchangeRate(String input, String output) {
+  public String ExchangeRate(String input, String fromCurrency, String toCurrency) throws Exception {
     buildMap(input);
-
-    // Parse the output string to get source and target currencies
-    String[] response = output.split(":");
-    String fromCurrency = response[0];
-    String toCurrency = response[1];
-
-    if(fromCurrency.equals(toCurrency)){
-      System.out.println(fromCurrency + " -> " + toCurrency + ":" + "1.0");
-      return;
-    }
 
     // set to keep track of all found paths
     Set<String> paths = new HashSet<>();
@@ -52,20 +42,21 @@ public class ExchangeRateAllFeasible {
     dfs(fromCurrency, toCurrency, 1.0, visited, paths, new StringBuilder(fromCurrency));
 
     // Print all paths found
+    // If no valid route is found, throw an exception
     if (paths.isEmpty()) {
-      System.out.println("No valid exchange rate path found.");
-    } else {
-      for (String path : paths) {
-        System.out.println(path);
-      }
+      throw new Exception("No valid route found from " + fromCurrency + " to " + toCurrency);
     }
+
+    return String.join(",\n", paths);
   }
 
   // Depth-First Search method to find all paths
-  private void dfs(String current, String target, double rate, Set<String> visited, Set<String> paths, StringBuilder currentPath) {
+  private void dfs(String current, String target, double rate, Set<String> visited, Set<String> paths,
+      StringBuilder currentPath) {
     // If we reach the target, save the current path and its rate
     if (current.equals(target)) {
-      paths.add(currentPath  + ": " + rate);
+      // Store the path with the rate
+      paths.add(generateOutput(currentPath.toString(), rate));
       return;
     }
 
@@ -86,18 +77,32 @@ public class ExchangeRateAllFeasible {
     visited.remove(current); // Unmark the node for other paths
   }
 
-  public static void main(String[] args) {
+  // Generate the output format
+  public String generateOutput(String route, double cost) {
+    StringBuilder result = new StringBuilder();
+    result.append("{\n");
+    result.append(" \"route\": \"").append(route).append("\",\n");
+    result.append(" \"cost\": ").append(cost).append("\n");
+    result.append("}");
+    return result.toString();
+  }
+
+  public static void main(String[] args) throws Exception {
     ExchangeRateAllFeasible exchangeRate = new ExchangeRateAllFeasible();
     String input = "USD:CAD:1.26,USD:AUD:0.75,USD:JPY:109.23";
 
-    // Test direct exchange rate
-    String output = "USD:USD";
-    System.out.println("Exchange rate paths from USD to JPY:");
-    exchangeRate.ExchangeRate(input, output);
+    try {
+      // Test direct exchange rate
+      System.out.println("Exchange rate paths from USD to JPY:");
+      String result1 = exchangeRate.ExchangeRate(input, "USD", "JPY");
+      System.out.println(result1);  // Print the result
 
-    // Test with an indirect relationship
-    output = "CAD:JPY";
-    System.out.println("\nExchange rate paths from CAD to JPY:");
-    exchangeRate.ExchangeRate(input, output);
+      // Test with an indirect relationship
+      System.out.println("\nExchange rate paths from CAD to JPY:");
+      String result2 = exchangeRate.ExchangeRate(input, "CAD", "JPY");
+      System.out.println(result2);  // Print the result
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 }
