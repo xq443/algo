@@ -9,13 +9,11 @@ import java.util.Set;
 
 public class MultipleIntermediates {
   public static class Edge {
-    String src;
     String dest;
     String method;
     int cost;
 
-    public Edge(String src, String dest, String method, int cost) {
-      this.src = src;
+    public Edge(String dest, String method, int cost) {
       this.dest = dest;
       this.method = method;
       this.cost = cost;
@@ -36,8 +34,8 @@ public class MultipleIntermediates {
       String dest = response[1];
       String method = response[2];
       int cost = Integer.parseInt(response[3]);
-      map.computeIfAbsent(src, k -> new ArrayList<>()).add(new Edge(src, dest, method, cost));
-      map.computeIfAbsent(dest, k -> new ArrayList<>()).add(new Edge(dest, src, method, cost));
+      map.computeIfAbsent(src, k -> new ArrayList<>()).add(new Edge(dest, method, cost));
+      //map.computeIfAbsent(dest, k -> new ArrayList<>()).add(new Edge(src, method, cost));
     }
   }
 

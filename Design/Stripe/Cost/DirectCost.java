@@ -7,13 +7,11 @@ import java.util.Map;
 
 public class DirectCost {
   public static class Edge {
-    String src;
     String dest;
     String method;
     int cost;
 
-    public Edge(String src, String dest, String method, int cost) {
-      this.src = src;
+    public Edge(String dest, String method, int cost) {
       this.dest = dest;
       this.method = method;
       this.cost = cost;
@@ -34,7 +32,7 @@ public class DirectCost {
       String dest = response[1];
       String method = response[2];
       int cost = Integer.parseInt(response[3]);
-      map.computeIfAbsent(src, k -> new ArrayList<>()).add(new Edge(src, dest, method, cost));
+      map.computeIfAbsent(src, k -> new ArrayList<>()).add(new Edge(dest, method, cost));
       //map.computeIfAbsent(dest, k -> new ArrayList<>()).add(new Edge(dest, src, method, cost));
     }
   }
@@ -88,10 +86,10 @@ public class DirectCost {
     try {
       DirectCost cost = new DirectCost();
       String input = "US:UK:UPS:4,US:UK:DHL:5,UK:CA:FedEx:10,AU:JP:DHL:20,US:JP:DHL:20,CA:JP:DHL:20";
-      String src = "US";
+      String src = "UK";
       String dest = "CA";
       String method = "FedEx";
-//      System.out.println(cost.CostDirect(input, src, dest, method));
+      System.out.println(cost.CostDirect(input, src, dest, method));
       String outputIntermediate = cost.CostOneIntermediate(input, src, dest, method);
       System.out.println(outputIntermediate); // Print the output for one intermediate
     } catch (Exception e) {
