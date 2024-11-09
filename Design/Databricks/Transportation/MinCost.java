@@ -1,19 +1,23 @@
-package Databricks;
+package Databricks.Transportation;
 
 import java.util.*;
 
-public class Transportation {
-  public static class Cell {
-    int row, col, time, cost;
-    Cell(int row, int col, int time, int cost) {
-      this.row = row;
-      this.col = col;
-      this.time = time;
+public class MinCost {
+
+  public static class Result {
+    int mode;
+    int cost;
+
+    Result(int mode, int cost) {
+      this.mode = mode;
       this.cost = cost;
     }
   }
 
-  public int findBestTransportationMode(char[][] grid, int[] times, int[] costs) {
+  public List<Result> findBestTransportationModes(char[][] grid, int[] times, int[] costs) {
+
+    List<Result> results = new ArrayList<>();
+
     int rows = grid.length;
     int cols = grid[0].length;
 
@@ -33,16 +37,11 @@ public class Transportation {
 
     if (startRow == -1 || startCol == -1 || endRow == -1 || endCol == -1) {
       System.out.println("Starting point or destination not found");
-      return -1;
+      return results;
     }
 
     // Array for direction movements (up, down, left, right)
     int[] directions = {-1, 0, 1, 0, -1};
-
-    // Track the best time and cost
-    int bestMode = -1;
-    int bestTime = Integer.MAX_VALUE;
-    int bestCost = Integer.MAX_VALUE;
 
     // Try each mode independently and find the best one
     for (int mode = 1; mode <= times.length; mode++) {
@@ -51,16 +50,16 @@ public class Transportation {
       boolean[][] visited = new boolean[rows][cols];
       visited[startRow][startCol] = true;
 
+      int bestCost = Integer.MAX_VALUE;
+
       while (!queue.isEmpty()) {
         int[] curr = queue.poll();
         int r = curr[0], c = curr[1], time = curr[2], cost = curr[3];
 
         // Reached the destination
         if (r == endRow && c == endCol) {
-          if (time < bestTime || (time == bestTime && cost < bestCost)) {
-            bestTime = time;
+          if (cost < bestCost) {
             bestCost = cost;
-            bestMode = mode;
           }
           break; // Exit the BFS as soon as we reach the destination for this mode
         }
@@ -80,13 +79,17 @@ public class Transportation {
           }
         }
       }
+
+      if (bestCost != Integer.MAX_VALUE) {
+        results.add(new Result(mode, bestCost));
+      }
     }
 
-    return bestMode;
+    return results;
   }
 
   public static void main(String[] args) throws Exception {
-    Transportation transportation = new Transportation();
+    MinCost transportation = new MinCost();
     try {
 
       char[][] grid1 = {
@@ -99,8 +102,11 @@ public class Transportation {
       };
       int[] timeArr1 = {3, 2, 1, 1};
       int[] costArr1 = {0, 1, 3, 2};
-      int result1 = transportation.findBestTransportationMode(grid1, timeArr1, costArr1);
-      System.out.println("Best mode case 1: " + result1);
+      List<Result> results1 = transportation.findBestTransportationModes(grid1, timeArr1, costArr1);
+      System.out.println("Case 1:");
+      for (Result result : results1) {
+        System.out.println("Mode: " + result.mode + ", Cost: " + result.cost);
+      }
 
       char[][] grid3 = {
           {'S', '1'},
@@ -108,17 +114,23 @@ public class Transportation {
       };
       int[] timeArr3 = {2, 2};
       int[] costArr3 = {5, 8};
-      int result3 = transportation.findBestTransportationMode(grid3, timeArr3, costArr3);
-      System.out.println("Best mode case 3 equal times but with different costs: " + result3);
+      List<Result> results3 = transportation.findBestTransportationModes(grid3, timeArr3, costArr3);
+      System.out.println("Case 3:");
+      for (Result result : results3) {
+        System.out.println("Mode: " + result.mode + ", Cost: " + result.cost);
+      }
 
       char[][] grid4 = {
           {'S', '2'},
           {'1', 'D'}
       };
       int[] timeArr4 = {2, 2};
-      int[] costArr4 = {3, 5};
-      int result4 = transportation.findBestTransportationMode(grid4, timeArr4, costArr4);
-      System.out.println("Best mode case 4 equal times: " + result4);
+      int[] costArr4 = {3, 3};
+      List<Result> results4 = transportation.findBestTransportationModes(grid4, timeArr4, costArr4);
+      System.out.println("Case 4:");
+      for (Result result : results4) {
+        System.out.println("Mode: " + result.mode + ", Cost: " + result.cost);
+      }
 
       char[][] grid2 = {
           {'S', 'X', 'X', 'X', 'X'},
@@ -127,8 +139,11 @@ public class Transportation {
       };
       int[] timeArr2 = {1};
       int[] costArr2 = {0};
-      int result2 = transportation.findBestTransportationMode(grid2, timeArr2, costArr2);
-      System.out.println("Best mode case 2 no path exist: " + result2);
+      List<Result> results2 = transportation.findBestTransportationModes(grid2, timeArr2, costArr2);
+      System.out.println("Case 2:");
+      for (Result result : results2) {
+        System.out.println("Mode: " + result.mode + ", Cost: " + result.cost);
+      }
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

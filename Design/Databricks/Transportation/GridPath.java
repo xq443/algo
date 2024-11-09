@@ -1,4 +1,4 @@
-package Databricks;
+package Databricks.Transportation;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ class GridPath {
     }
 
     if (startRow == -1 || startCol == -1 || endRow == -1 || endCol == -1) {
-      System.out.println("起点或终点未找到");
+      System.out.println("starting points or destination points not found.");
       return new int[]{-1, -1};
     }
 
