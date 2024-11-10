@@ -2,6 +2,8 @@ package Databricks.Intervals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Intervals {
@@ -68,15 +70,30 @@ public class Intervals {
     }
 
     // Merge overlapping intervals
+    return mergeIntervals(res);
+  }
+
+  // Function to merge overlapping intervals
+  public List<Interval> mergeIntervals(List<Interval> ivs) {
+    if (ivs.isEmpty())
+      return ivs;
+
+    // Sort intervals by start time
+    Collections.sort(ivs, Comparator.comparingInt(a -> a.start));
+
     List<Interval> merged = new ArrayList<>();
-    for (Interval interval : res) {
-      if (merged.isEmpty() || merged.getLast().end < interval.start - 1) {
-        merged.add(interval);
+    Interval prev = ivs.get(0);
+
+    for (int i = 1; i < ivs.size(); i++) {
+      Interval current = ivs.get(i);
+      if (current.start <= prev.end + 1) { // Can be merged
+        prev.end = Math.max(prev.end, current.end);
       } else {
-        Interval last = merged.getLast();
-        last.end = Math.max(last.end, interval.end);
+        merged.add(prev);
+        prev = current;
       }
     }
+    merged.add(prev);
 
     return merged;
   }
@@ -127,7 +144,7 @@ public class Intervals {
 
       // Test case 9: Remove elements from an interval list with overlapping intervals
       runTestCase(Arrays.asList(new Interval(1, 5), new Interval(3, 10)), 2, "Test case: Remove from overlapping intervals");
-      // Expected output: [(1, 2), (4, 8)] 1 2 3 4 5 6 7 8 9 10
+      // Expected output: [(1, 2), (4, 10)]
 
       // Test case 10: Index out of range
       runTestCase(Arrays.asList(new Interval(2, 4), new Interval(6, 8)), 10, "Test case 10");
