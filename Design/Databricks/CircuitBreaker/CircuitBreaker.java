@@ -1,5 +1,9 @@
 package Databricks.CircuitBreaker;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.function.Function;
 
 public class CircuitBreaker {
@@ -32,16 +36,22 @@ public class CircuitBreaker {
   // 尝试请求处理，返回处理结果
   private String attemptRequest(Server server, Function<String, String> requestHandler) {
     if (server.isCircuitOpen()) {
+      // 如果电路打开，增加拒绝计数并返回 "rejected"
+      server.incrementRejectCount();
       return "rejected";
     }
 
+    // 处理请求并获取结果
     String result = requestHandler.apply(server.getName());
     if (result.equals("failure")) {
+      // 如果请求失败，增加失败计数
       server.incrementFailCount();
     } else {
+      // 如果请求成功，重置失败计数
       server.resetFailCount();
     }
 
+    // 如果失败计数达到阈值，打开电路
     if (server.getFailCount() >= FAIL_THRESHOLD) {
       server.setCircuitOpen(true);
     }
@@ -85,6 +95,7 @@ public class CircuitBreaker {
 
     public boolean isCircuitOpen() {
       if (circuitOpen && rejectCount >= REJECT_THRESHOLD) {
+        // 如果拒绝计数达到阈值，重置拒绝计数并关闭电路
         resetRejectCount();
         return false; // 可以重试
       }
@@ -100,20 +111,41 @@ public class CircuitBreaker {
     }
   }
 
+  // 模拟请求处理函数
+  private static String makeHttpRequest(String serverName) {
+    try {
+      URL url = new URL("http://sfjkj.com/api");
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("GET");
+
+      int responseCode = conn.getResponseCode();
+      if (responseCode == 200) { // HTTP OK
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+
+        while ((inputLine = in.readLine()) != null) {
+          response.append(inputLine);
+        }
+        in.close();
+
+        // Assuming the API returns "success" or "failure" in the response body
+        return response.toString();
+      } else {
+        return "failure";
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      return "failure";
+    }
+  }
+
   public static void main(String[] args) {
-    // Mock 请求
+    // 创建 CircuitBreaker 实例
     CircuitBreaker circuitBreaker = new CircuitBreaker();
 
     // 模拟请求处理函数
-    Function<String, String> requestHandler = (serverName) -> {
-      // 随机模拟请求结果
-      double rand = Math.random();
-      if (rand < 0.7) {
-        return "failure"; // 模拟 70% 的请求失败
-      } else {
-        return "success"; // 30% 请求成功
-      }
-    };
+    Function<String, String> requestHandler = CircuitBreaker::makeHttpRequest;
 
     // 连续请求尝试
     for (int i = 0; i < 20; i++) {
