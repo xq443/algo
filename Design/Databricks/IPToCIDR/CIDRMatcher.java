@@ -5,7 +5,7 @@ import java.util.List;
 public class CIDRMatcher {
 
   public boolean isIPInCIDR(String ip, List<String> cidrs) {
-    int ipInt = ipToInt(ip); // Convert IP to integer to perform bitwise operations easier
+    int ipInt = toInt(ip); // Convert IP to integer to perform bitwise operations easier
 
     // Loop through each CIDR in the list
     for (String cidr : cidrs) {
@@ -18,16 +18,15 @@ public class CIDRMatcher {
   }
 
   // Converts an IP address to an integer
-  private int ipToInt(String ip) {
-    final int WORD_SIZE = 8;
-    String[] parts = ip.split("\\.");
-    int ipInt = 0;
-
-    for (int i = 0; i < 4; i++) {
-      ipInt |= (Integer.parseInt(parts[i]) << (3 * WORD_SIZE - (i * 8)));
+  public int toInt(String ip) {
+    // split by dot
+    String[] sep = ip.split("\\.");
+    int sum = 0;
+    for(int i = 0; i < sep.length; i++) {
+      sum *= 256; // Shift sum left by 8 bits
+      sum += Integer.parseInt(sep[i]);
     }
-
-    return ipInt;
+    return sum;
   }
 
   // Check if the given IP matches the CIDR block
@@ -36,13 +35,26 @@ public class CIDRMatcher {
     String baseIP = parts[0];
     int prefixLength = Integer.parseInt(parts[1]);
 
-    int baseIPInt = ipToInt(baseIP);
+    int baseIPInt = toInt(baseIP);
 
     // Apply the mask based on the prefix length
-    int mask = (int) (0xFFFFFFFF << (32 - prefixLength));
+    int mask = (int) (0xFFFFFFFF << (32 - prefixLength)); // bitmask with 255: 11111111 11111111 11111111 11111111
 
-    // Compare the masked IP address with the base CIDR IP
+    /**
+     * Consider the IP 192.168.1.5 with a subnet mask of /24
+     * ipInt for 192.168.1.5: 11000000 10101000 00000001 00000101 (integer representation of the IP)
+     * baseIPInt for 192.168.1.0: 11000000 10101000 00000001 00000000 (integer representation of the network base IP)
+     *
+     * ipInt & mask = (11000000 10101000 00000001 00000101) & 11111111 11111111 11111111 00000000
+     * = 11000000 10101000 00000001 00000000 (192.168.1.0)
+     *
+     * baseIPInt & mask = (11000000 10101000 00000001 00000000) & 11111111 11111111 11111111 00000000
+     * = 11000000 10101000 00000001 00000000 (192.168.1.0)
+     */
+
+    // Compare the masked IP address with the base CIDR IP: checks if the network portion of the ipInt matches the network portion of baseIPInt.
     return (ipInt & mask) == (baseIPInt & mask);
+
   }
 
   public static void main(String[] args) {

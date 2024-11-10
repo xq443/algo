@@ -5,14 +5,16 @@ import java.util.List;
 
 public class IPToCIDR {
   public List<String> ipToCIDR(String ip, int n) {
-    int curr = toInt(ip);
+    int curr = toInt(ip); // convert into integer
     List<String> ret = new ArrayList<>();
 
     while(n > 0) {
+
+      // Find the number of trailing zero bits in `curr` (used to calculate maximum block size)
       int maxBits = Integer.numberOfTrailingZeros(curr);
 
-      int bitVal = 1;
-      int count = 0;
+      int bitVal = 1; // the number of IP addresses in the current CIDR block
+      int count = 0; // track how many bits in the IP address are left variable for the host portion of the CIDR block.
 
       while(bitVal < n && count < maxBits) {
         bitVal <<= 1;
@@ -39,6 +41,8 @@ public class IPToCIDR {
     StringBuilder builder = new StringBuilder();
 
     for (int i = 3; i >= 0; i--) {
+
+      // Shifting Bits and Masking with & 255 bc we zero out everything except the last 8 bits.
       builder.append(Integer.toString((number >> (i * WORD_SIZE)) & 255));
       builder.append('.');
     }
@@ -67,7 +71,7 @@ public class IPToCIDR {
 
   public static void main(String[] args) {
     IPToCIDR ipToCIDR = new IPToCIDR();
-    String ip = "255.0.0.7";
+    String ip = "255.0.0.7"; // [255.0.0.7/32, 255.0.0.8/29, 255.0.0.16/32]
     int n = 10;
     System.out.println(ipToCIDR.ipToCIDR(ip, n));
   }
