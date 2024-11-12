@@ -1,0 +1,1 @@
+Hello worldThis is a sample text fileThis text file is used for testingHello againSample text file for MapReduce
