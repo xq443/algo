@@ -59,8 +59,15 @@ class RevenueAssociation {
 
   public List<Integer> get(int k, int rev) {
     List<Integer> res = new ArrayList<>();
-    // 获取所有收入低于rev的条目，降序遍历
-    NavigableMap<Integer, Set<User>> subMap = revMap.headMap(rev, false).descendingMap();
+    // Get all entries with revenue below the threshold, in descending order
+    // Returns a reverse order view of the mappings contained in this map.
+    /**
+     * descendingMap(): Returns a reverse order view of the mappings contained in this map.
+     * subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive): Returns a view of the portion of this map whose keys range from fromKey to toKey.
+     * headMap(K toKey, boolean inclusive): Returns a view of the portion of this map whose keys are less than (or equal to, if inclusive is true) toKey.
+     */
+    NavigableMap<Integer, Set<User>> subMap = new TreeMap<>(revMap.headMap(rev, false)).descendingMap();
+    //TreeMap<Integer, Set<User>> subMap = (TreeMap<Integer, Set<User>>) new TreeMap<>(revMap.headMap(rev, false)).descendingMap();
     for (Map.Entry<Integer, Set<User>> entry : subMap.entrySet()) {
       for (User usr : entry.getValue()) {
         res.add(usr.id);
@@ -97,7 +104,7 @@ class RevenueAssociation {
     System.out.println("Test Case 5:");
     ra.insert(150); // ID=5
     ra.insert(150, 2); // ID=6，ID=2的收入变为350
-    System.out.println(ra.get(3, 200)); // 应返回[5,3,4]
+    System.out.println(ra.get(3, 200)); // 应返回[5,1,3]
 
     // 测试用例6：推荐用户不存在
     System.out.println("Test Case 6:");
