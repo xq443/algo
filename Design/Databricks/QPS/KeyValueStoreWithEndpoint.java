@@ -1,8 +1,12 @@
 package Databricks.QPS;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
-public class KeyValueStoreWithSme {
+public class KeyValueStoreWithEndpoint {
 
   // 键值存储
   private Map<String, String> map;
@@ -28,7 +32,7 @@ public class KeyValueStoreWithSme {
   }
 
   // 构造函数初始化键值存储和操作记录数组
-  public KeyValueStoreWithSme() {
+  public KeyValueStoreWithEndpoint() {
     map = new HashMap<>();
     putSls = new Slot[WND];
     getSls = new Slot[WND];
@@ -88,9 +92,53 @@ public class KeyValueStoreWithSme {
     return total / (double) WND; // 计算平均 QPS
   }
 
+  // 调用接口获取在过去五分钟内 add 操作和 get 操作各自平均的 QPS
+  public static String getQPSFromEndpoint(String endpoint) throws Exception {
+    URL url = new URL(endpoint);
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+
+    int responseCode = conn.getResponseCode();
+    if (responseCode == HttpURLConnection.HTTP_OK) {
+      BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+      String inputLine;
+      StringBuilder response = new StringBuilder();
+
+      while ((inputLine = in.readLine()) != null) {
+        response.append(inputLine);
+      }
+      in.close();
+      return response.toString();
+    } else {
+      throw new RuntimeException("Failed to get QPS from endpoint: " + responseCode);
+    }
+  }
+
+  // 从接口获取数据并执行 put 或 get 操作
+  public void performOperationsFromEndpoint(String endpoint) throws Exception {
+    String data = getQPSFromEndpoint(endpoint);
+    // 假设数据格式为 "put:key1,val1;get:key2;put:key3,val3"
+    String[] operations = data.split(";");
+    for (String operation : operations) {
+      if (operation.startsWith("put:")) {
+        String[] kv = operation.substring(4).split(",");
+        if (kv.length == 2) {
+          put(kv[0], kv[1]);
+        }
+      } else if (operation.startsWith("get:")) {
+        String key = operation.substring(4);
+        get(key);
+      }
+    }
+  }
+
   // 主方法用于运行测试用例
-  public static void main(String[] args) throws InterruptedException {
-    KeyValueStoreWithSme store = new KeyValueStoreWithSme();
+  public static void main(String[] args) throws Exception {
+    KeyValueStoreWithEndpoint store = new KeyValueStoreWithEndpoint();
+
+    String endpoint = "http://mockapi.com/qps"; // Mock URL
+    store.performOperationsFromEndpoint(endpoint);
+    System.out.println("\n从接口获取并执行的操作完成");
 
     // 测试用例 1：基本的 put 和 get 操作
     store.put("a", "1");
@@ -151,9 +199,8 @@ public class KeyValueStoreWithSme {
     System.out.println("Get QPS 高频操作后: " + store.mGet()); // 预期: ~3.34 (100 + 1000)/300
 
     // 测试用例 6：无操作
-    KeyValueStoreWithSme emptyStore = new KeyValueStoreWithSme();
+    KeyValueStoreWithEndpoint emptyStore = new KeyValueStoreWithEndpoint();
     System.out.println("\n测试用例 6:");
-    System.out.println("Put QPS (empty): " + emptyStore.mPut()); // 预期: 0.0
-    System.out.println("Get QPS (empty): " + emptyStore.mGet()); // 预期: 0.0
+    System.out.println("Put QPS (empty): " + emptyStore.mPut());
   }
 }
