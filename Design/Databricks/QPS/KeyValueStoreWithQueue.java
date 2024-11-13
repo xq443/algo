@@ -201,3 +201,19 @@ public class KeyValueStoreWithQueue {
     System.out.println("Get QPS (empty): " + emptyStore.mGet()); // 预期: 0.0
   }
 }
+/**
+ * WAL:
+ * 为了在键值存储系统中引入 WAL(预写日志)和快照机制以提升数据持久性和恢复能力，
+ * 首先在每次执行 put 或 get 操作时，将操作详情(如操作类型、键、值和时间戳)同步写入 预写日志文件，
+ * 确保在系统崩溃时能够通过日志回放恢复数据。
+ * 其次，定期生成快照，保存 当前整个键值映射的状态，
+ * 例如每隔一定时间或达到特定操作次数时，将 HashMap 序列化 并存储到快照文件中，以减少需要回放的日志量并加快恢复速度。
+ * 在系统启动时，首先加载 最新的快照文件，然后回放自快照生成以来的日志文件，以恢复到最新状态。此外，为了优 化性能，
+ * 可以采用异步日志写入方式，将日志操作委托给独立线程处理，并实现日志轮转和 压缩策略以节省存储空间。
+ */
+/**
+ * Fine-Grained Locking with Lock Striping
+ * One effective way to implement fine-grained locking is through lock striping.
+ * This technique involves dividing the data structure into several segments, each protected by its own lock.
+ * This allows multiple threads to operate on different segments concurrently without interfering with each other.
+ */

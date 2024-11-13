@@ -99,7 +99,7 @@ public class Intervals {
   }
 
   // Function to print intervals
-  public static void printIntervals(List<Interval> ivs) {
+  public void printIntervals(List<Interval> ivs) {
     List<String> strs = new ArrayList<>();
     for (Interval iv : ivs) {
       strs.add(iv.toString());
