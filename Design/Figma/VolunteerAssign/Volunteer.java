@@ -1,4 +1,4 @@
-package VolunteerAssign;
+package Figma.VolunteerAssign;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +46,10 @@ public class Volunteer {
 
   public int getPreferenceRank(Task task) {
     return preferenceMap.getOrDefault(task, -1);
+  }
+
+  public Map<Task, Integer> getPreferenceMap() {
+    return preferenceMap;
   }
 
   @Override

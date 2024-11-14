@@ -1,7 +1,6 @@
-package VolunteerAssign;
+package Figma.VolunteerAssign;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -66,6 +65,7 @@ public class Util {
               case 2 -> 2;  // Third-choice task
               default -> 1; // Other tasks of interest
             };
+            volunteer.getPreferenceMap().put(task, rank);
             volunteer.addInterestedTask(task, rank);
           }
         }

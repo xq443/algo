@@ -1,4 +1,4 @@
-package VolunteerAssign;
+package Figma.VolunteerAssign;
 
 public class Task {
   int id;
