@@ -23,7 +23,7 @@ public class Main {
 //    }
 
     // Initialize the longest common prefix as the first matching filename
-    String prefix = files.get(0);
+    String prefix = files.getFirst();
     // Compare each file and update the longest common prefix
     for (int i = 1; i < files.size(); i++) {
       prefix = commonPrefix(prefix, files.get(i));
@@ -55,6 +55,7 @@ public class Main {
   public static String part2(List<String> paths, String input) {
     List<String> matches = new ArrayList<>();
 
+    // extract file name
     // Iterate through all paths and filter out those whose filenames start with the input prefix
     for (String path : paths) {
       String fileName = path.contains("/") ? path.substring(path.lastIndexOf("/") + 1) : path;
@@ -67,6 +68,7 @@ public class Main {
       return "";
     }
 
+    // extract folder name
     String folder = null;
     for (String path : matches) {
       int idx = path.lastIndexOf('/');
