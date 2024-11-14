@@ -115,17 +115,30 @@ public class Main {
   }
 
   // Part3: Handle input prefixes that may contain '/', implementing recursive auto-completion.
+
+  /**
+   *  List<String> pathsP3 = Arrays.asList(
+   *         "home/foo/f1.txt",
+   *         "home/foo/f1_2.txt",
+   *         "home/foo/README",
+   *         "home/foo/bar/f1.txt",
+   *         "home/foo/bar/README"
+   *
+   *     );
+   *     System.out.println(part3(pathsP3, "f")); // 预期输出: ""
+   *     System.out.println(part3(pathsP3, "home/f")); // 预期输出: "home/foo/f1"
+   */
   public static String part3(List<String> paths, String input) {
     if (input.isEmpty()) {
       return "";
     }
 
-    String[] parts = input.split("/");
+    String[] parts = input.split("/"); // home / f
     List<String> currentPaths = new ArrayList<>(paths);
     StringBuilder result = new StringBuilder();
 
     for (int i = 0; i < parts.length; i++) {
-      String part = parts[i];
+      String part = parts[i]; // 0: home, 1: f
       List<String> matches = new ArrayList<>(); // store paths that match the current part.
       // Iterate through the current path list and filter out those that start with the input part at the current level
       for (String path : currentPaths) {
@@ -212,7 +225,8 @@ public class Main {
         "home/foo/f1_2.txt",
         "home/foo/README",
         "home/foo/bar/f1.txt",
-        "home/foo/bar/README"
+        "home/foo/bar/README",
+        "foo/"
     );
     System.out.println(part3(pathsP3, "f")); // 预期输出: ""
     System.out.println(part3(pathsP3, "home/f")); // 预期输出: "home/foo/f1"
