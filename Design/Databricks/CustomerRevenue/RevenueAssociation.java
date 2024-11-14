@@ -126,3 +126,53 @@ class RevenueAssociation {
     System.out.println(raEmpty.get(1, 100)); // 应返回空列表[]
   }
 }
+/**
+ * Time Complexity Analysis
+ * Insert Operations:
+ *
+ * insert(int revenue):
+ *
+ * HashMap Insertion: Adding a user to usrMap takes O(1) on average.
+ * TreeMap Insertion: Adding a user to revMap takes O(log n).
+ * Overall Time Complexity: O(log n)
+ *
+ * insert(int rev, int refId):
+ *
+ * HashMap Lookup: Checking if the referring user exists takes O(1).
+ * HashMap Insertion: Adding a new user to usrMap takes O(1) on average.
+ * TreeMap Insertion: Adding a new user to revMap takes O(log n).
+ * TreeMap Removal: Removing the old revenue entry from revMap takes O(log n).
+ * TreeMap Insertion: Adding the updated revenue entry to revMap takes O(log n).
+ * Overall Time Complexity: O(log n)
+ *
+ * Read Operation:
+ *
+ * HashMap Lookup: Reading a user's information from usrMap takes O(1) on average.
+ * Overall Time Complexity: O(1)
+ * Get Operation:
+ *
+ * TreeMap Range Query: Using headMap to get entries with revenue below the threshold takes O(log n).
+ * TreeMap Descending Map: Creating a descending view of the map takes O(1).
+ * Iteration: Iterating over the entries to collect the top k users takes O(k).
+ * Overall Time Complexity: O(k + log n)
+ *
+ * Summary
+ * Insert Operations:
+ *
+ * insert(int revenue): O(log n)
+ * insert(int rev, int refId): O(log n)
+ *
+ * Read Operation:
+ *
+ * HashMap Lookup: O(1)
+ *
+ * Get Operation:
+ *
+ * get(int k, int rev): O(k + log n)
+ *
+ * Read-Heavy Workloads: The current implementation is more suitable for read-heavy workloads due to the efficient range queries and sorted data provided by TreeMap.
+ * The get method benefits from the sorted order and efficient range queries O(1).
+ * Write-Heavy Workloads: For write-heavy workloads, the current implementation may face performance bottlenecks
+ * due to the O(log n) complexity of TreeMap operations.
+ * Optimizations such as batching writes or using ConcurrentHashMap for concurrent writes
+ */
