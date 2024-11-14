@@ -153,3 +153,42 @@ public class Intervals {
     }
   }
 }
+/**
+ * removeCoveredElement Method
+ *
+ * Time Complexity
+ *
+ * Finding the Element to Remove:
+ *
+ * The loop iterates through all intervals to find the element to remove. This takes (O(n)) time, where (n) is the number of intervals.
+ * Adjusting Intervals:
+ *
+ * The second loop iterates through all intervals to adjust them based on the element to remove. This also takes (O(n)) time.
+ * Merging Intervals:
+ *
+ * The mergeIntervals method is called, which sorts the intervals and then merges them. Sorting takes (O(n \log n)) time, and merging takes (O(n)) time.
+ * Combining these steps, the overall time complexity of the removeCoveredElement method is (O(n \log n)).
+ *
+ * Space Complexity
+ * The space complexity is dominated by the space required to store the intervals. The additional space used for the result list and temporary variables is (O(n)).
+ * mergeIntervals Method
+ * Time Complexity
+ * Sorting:
+ *
+ * Sorting the intervals by their start time takes (O(n \log n)) time.
+ * Merging:
+ *
+ * The loop iterates through all intervals to merge them. This takes (O(n)) time.
+ * Combining these steps, the overall time complexity of the mergeIntervals method is (O(n \log n)).
+ *
+ * Space Complexity
+ * The space complexity is (O(n)) for storing the merged intervals.
+ * Summary
+ * Time Complexity:
+ *
+ * removeCoveredElement: (O(n \log n))
+ * mergeIntervals: (O(n \log n))
+ * Space Complexity:
+ *
+ * Both methods have a space complexity of (O(n)).
+ */
