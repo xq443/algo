@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Transportation {
 
-  public int findBestTransportationMode(char[][] grid, int[] times, int[] costs) {
+  public int findBestTransportationMode(char[][] grid, int[] times, int[] costs) throws Exception {
     int rows = grid.length;
     int cols = grid[0].length;
 
@@ -22,20 +22,21 @@ public class Transportation {
       }
     }
 
+    // Exclude cases where the starting or ending point is not found
     if (startRow == -1 || startCol == -1 || endRow == -1 || endCol == -1) {
-      System.out.println("Starting point or destination not found");
-      return -1;
+      throw new Exception("Starting point or destination not found");
+      // return -1;
     }
-
-    // Array for direction movements (up, down, left, right)
-    int[] directions = {-1, 0, 1, 0, -1};
 
     // Track the best time and cost
     int bestMode = -1;
     int bestTime = Integer.MAX_VALUE;
     int bestCost = Integer.MAX_VALUE;
 
-    // Try each mode independently and find the best one
+    // Array for direction movements (left, up, right, down)
+    int[] directions = {-1, 0, 1, 0, -1};
+
+    // Try each mode independently and find the best mode
     for (int mode = 1; mode <= times.length; mode++) {
       Queue<int[]> queue = new LinkedList<>();
       queue.offer(new int[]{startRow, startCol, 0, 0}); // start from S with mode-specific time and cost
@@ -64,7 +65,7 @@ public class Transportation {
           // Check if neighbor is within bounds, not a blocked cell, and matches the mode
           if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] != 'X' &&
               (grid[nr][nc] == 'S' || grid[nr][nc] == 'D' || Character.getNumericValue(grid[nr][nc]) == mode) &&
-              !visited[nr][nc]) {
+              !visited[nr][nc]) {  // convert a character (from the grid) into its numeric value.
 
             visited[nr][nc] = true;
             queue.offer(new int[]{nr, nc, time + times[mode - 1], cost + costs[mode - 1]});
@@ -107,7 +108,7 @@ public class Transportation {
           {'1', 'D'}
       };
       int[] timeArr4 = {2, 2};
-      int[] costArr4 = {3, 5};
+      int[] costArr4 = {3, 3};
       int result4 = transportation.findBestTransportationMode(grid4, timeArr4, costArr4);
       System.out.println("Best mode case 4 equal times: " + result4);
 
@@ -120,6 +121,15 @@ public class Transportation {
       int[] costArr2 = {0};
       int result2 = transportation.findBestTransportationMode(grid2, timeArr2, costArr2);
       System.out.println("Best mode case 2 no path exist: " + result2);
+
+
+      char[][] grid5 = {
+          {'X', 'X', 'X', 'X', 'X'},
+          {'X', '1', 'X', '1', 'X'},
+          {'X', 'X', 'X', 'X', 'D'},
+      };
+      int result5 = transportation.findBestTransportationMode(grid5, timeArr2, costArr2);
+      System.out.println("Best mode case 5 no exist STARTING POINT: " + result5);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
