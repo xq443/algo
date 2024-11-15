@@ -1,13 +1,13 @@
 package Databricks.TicTacToe;
 
-class TicTacToe {
+public class TicTacToe {
   int[][] board;
   int[] rows;
   int[] cols;
-  int diag;
-  int revdiag;
-  int m;
-  int n;
+  int diag; // Count for main diagonal
+  int revdiag; // Count for reverse diagonal
+  int m; // Number of rows
+  int n; // Number of columns
 
   public TicTacToe(int m, int n) {
     board = new int[m][n];
@@ -26,6 +26,7 @@ class TicTacToe {
       }
       System.out.println();
     }
+    System.out.println();
   }
 
   public int move(int row, int col, int player) {
@@ -42,15 +43,25 @@ class TicTacToe {
     board[row][col] = player;
     rows[row] += sign;
     cols[col] += sign;
-    if (row == col) diag += sign;
-    if (row + col == n - 1) revdiag += sign;
+
+    // Update main diagonal (only valid if row == col in the rectangular board)
+    if (row == col) {
+      diag += sign;
+    }
+
+    // Update reverse diagonal (only valid if row + col == n - 1 in the rectangular board)
+    if (row + col == n - 1) {
+      revdiag += sign;
+    }
 
     // Check for a win
-    if (Math.abs(rows[row]) == n
-        || Math.abs(cols[col]) == n
-        || Math.abs(diag) == n
-        || Math.abs(revdiag) == n) {
-      //printBoard();
+    boolean hasWon = Math.abs(rows[row]) == n || // Row win
+        Math.abs(cols[col]) == m || // Column win
+        (Math.abs(diag) == Math.min(m, n)) || // Main diagonal win
+        (Math.abs(revdiag) == Math.min(m, n)); // Reverse diagonal win
+
+    if (hasWon) {
+      printBoard();
       System.out.println("Player " + player + " won");
       return player;
     }
@@ -60,19 +71,32 @@ class TicTacToe {
   }
 
   public static void main(String[] args) {
-    TicTacToe game = new TicTacToe(3, 3);
+    // Test case 1: Square board
+    TicTacToe game1 = new TicTacToe(3, 3);
+    game1.move(0, 0, 2);
+    game1.move(0, 2, 1);
+    game1.move(1, 1, 2);
+    game1.move(2, 1, 1);
+    game1.move(2, 2, 2); // Player 2 wins on main diagonal
 
-    // Normal moves
-    game.move(0, 0, 1);
-    game.move(0, 1, 2);
-    game.move(1, 1, 1);
-    game.move(1, 0, 2);
-    game.move(2, 2, 1); // Player 1 wins
+    // Test case 2: Reverse diagonal on a rectangular board
+    TicTacToe game2 = new TicTacToe(4, 3);
+    game2.move(1, 0, 2);
+    game2.move(0, 0, 1);
+    game2.move(2, 1, 2);
+    game2.move(3, 2, 2); // Player 2 wins on reverse diagonal
 
-    // Edge cases
-    game.move(3, 3, 1); // Out of bounds
-    game.move(0, 0, 2); // Cell already occupied
-    game.move(2, 0, 2);
-    game.move(2, 1, 2); // Player 2 wins
+    // Test case 3: Row win on rectangular board
+    TicTacToe game3 = new TicTacToe(4, 3);
+    game3.move(2, 0, 1);
+    game3.move(2, 1, 1);
+    game3.move(2, 2, 1); // Player 1 wins with a row
+
+    // Test case 4: Column win on rectangular board
+    TicTacToe game4 = new TicTacToe(4, 3);
+    game4.move(0, 1, 2);
+    game4.move(1, 1, 2);
+    game4.move(2, 1, 2);
+    game4.move(3, 1, 2); // Player 2 wins with a column
   }
 }

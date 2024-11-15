@@ -9,7 +9,6 @@ public class IPToCIDR {
     List<String> ret = new ArrayList<>();
 
     while(n > 0) {
-
       // Find the number of trailing zero bits in `curr` (used to calculate maximum block size)
       int maxBits = Integer.numberOfTrailingZeros(curr);
 

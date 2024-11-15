@@ -53,7 +53,7 @@ public class Transportation {
             bestCost = cost;
             bestMode = mode;
           }
-          break; // Exit the BFS as soon as we reach the destination for this mode
+          // break; // Exit the BFS as soon as we reach the destination for this mode
         }
 
         // Explore neighbors
@@ -125,3 +125,4 @@ public class Transportation {
     }
   }
 }
+// asymptotically O(mn)

@@ -2,18 +2,22 @@ package Databricks.IPToCIDR;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 public class AllowDeny {
-
+  // <IP_address>/<prefix_length>
+  // the first 16 bits of the IP address represent the network portion
+  // the remaining bits represent the host portion
   public static boolean isIPAllowed(String ipAddress, List<String[]> rules) {
     try {
-      InetAddress ip = InetAddress.getByName(ipAddress);
+      // Convert string IP address to integer representation
+      int ipValue = convertIPToInt(ipAddress);
+
       for (String[] rule : rules) {
         String action = rule[0]; // "ALLOW" or "DENY"
         String cidr = rule[1];
-        if (isIPInCIDR(ip, cidr)) {
+
+        // Check if the IP is in the CIDR block
+        if (isIPInCIDR(ipValue, cidr)) {
           if (action.equals("ALLOW")) {
             return true;
           }
@@ -22,31 +26,49 @@ public class AllowDeny {
           }
         }
       }
-    } catch (UnknownHostException e) {
+    } catch (IllegalArgumentException e) {
       System.out.println("Invalid IP address");
     }
     return false; // Default is false if no ALLOW rule matches
   }
 
-  private static boolean isIPInCIDR(InetAddress ip, String cidr) {
+  // Convert IP string to integer
+  private static int convertIPToInt(String ip) {
+    String[] parts = ip.split("\\."); // cidrIP = "192.168.1.100" -> ["192", "168", "1", "100"]
+    if (parts.length != 4) {
+      throw new IllegalArgumentException("Invalid IP address format");
+    }
+    int ipValue = 0;
+    // Java's byte type is signed, meaning it can hold values from -128 to 127.
+    // However, an IP address octet is always between 0 and 255, which is outside the signed byte range.
+    // So, when converting from an integer to a byte or handling byte values,
+    // we use & 0xFF to ensure we get the correct unsigned byte value (in the range 0–255).
+    for (int i = 0; i < 4; i++) { // a byte value is treated as an unsigned value: 11111111
+      ipValue = (ipValue << 8) | (Integer.parseInt(parts[i]) & 0xFF); // Left shift and combine into one integer
+    } // For IP: ipValue = 192 * 256^3 + 168 * 256^2 + 1 * 256^1 + 100 = 3238992164
+    return ipValue;
+  }
+
+  private static boolean isIPInCIDR(int ipValue, String cidr) {
     try {
       String[] parts = cidr.split("/");
       String cidrIP = parts[0];
-      int prefixLength = Integer.parseInt(parts[1]);
-      byte[] ipBytes = ip.getAddress();
-      byte[] cidrBytes = InetAddress.getByName(cidrIP).getAddress();
+      int prefixLength = Integer.parseInt(parts[1]); // 192.168.1.100/32 prefix length 32
 
-      int mask = (0xFFFFFFFF << (32 - prefixLength));
-      int ipValue = 0;
-      int cidrValue = 0;
+      int cidrValue = convertIPToInt(cidrIP);  // cidrValue = 192 * 256^3 + 168 * 256^2 + 1 * 256^1 + 100 = 3238992164.
 
-      for (int i = 0; i < 4; i++) {
-        ipValue = (ipValue << 8) | (ipBytes[i] & 0xFF); // left shift by 8 bits and deal with the unsigned bytes
-        cidrValue = (cidrValue << 8) | (cidrBytes[i] & 0xFF);
-      }
+      // Create mask based on prefix length
+      // If the prefixLength is 24,
+      // we need a mask that keeps the first 24 bits and sets the remaining 8 bits to 0.
+      int mask = (0xFFFFFFFF << (32 - prefixLength));  // (32 bits set to 1)
 
+      // Check if the IP is in the CIDR range
+      // determining which part of an IP address belongs to the network (the part shared by all devices in the same network)
+      // and which part belongs to the host (the unique part that identifies individual devices within the network).
+
+      //  masked version of 192.168.1.100 matches 192.168.1.0, belongs to the network,
       return (ipValue & mask) == (cidrValue & mask);
-    } catch (UnknownHostException | NumberFormatException e) {
+    } catch (NumberFormatException e) {
       return false; // If CIDR is invalid
     }
   }

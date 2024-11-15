@@ -8,18 +8,13 @@ import java.util.List;
 
 public class Intervals {
 
-  class Interval {
+  static class Interval {
     int start; // Start
     int end; // End
 
     Interval(int s, int e) {
       this.start = s;
       this.end = e;
-    }
-
-    @Override
-    public String toString() {
-      return "(" + start + ", " + end + ")";
     }
   }
 
