@@ -62,13 +62,28 @@ public class AI {
     }
   }
 
+  public boolean validate(int rowToMove, int colToMove){
+    if (rowToMove < 0 || rowToMove >= m || colToMove < 0 || colToMove >= n) {
+      System.out.println("Invalid move: (" + rowToMove + ", " + colToMove + "). Out of bounds!");
+      return false;
+    }
+    if (board[rowToMove][colToMove] != 0) {
+      System.out.println("Invalid move: (" + rowToMove + ", " + colToMove + "). Cell already occupied!");
+      return false;
+    }
+    return true;
+  }
+
   public int move(int player, int rowToMove, int colToMove) {
 
+    // Validate the move
+    if(!validate(rowToMove, colToMove)) return -1;
     // If the player is AI, get a random valid move
     if (isAI) {
       int[] aiMove = getAIMove();
       rowToMove = aiMove[0];
       colToMove = aiMove[1];
+      // if(!validate(rowToMove, colToMove)) return -1;
       System.out.println("AI plays at (" + rowToMove + ", " + colToMove + ")");
     } else{
       // human move
@@ -81,7 +96,7 @@ public class AI {
     cols[colToMove] += sign;
 
 
-    if (n == m) {
+
       // Update main diagonal (only valid if row == col in the rectangular board)
       if (rowToMove == colToMove) {
         diag += sign;
@@ -91,10 +106,10 @@ public class AI {
       if (rowToMove + colToMove == n - 1) {
         revdiag += sign;
       }
-    }
+
     // Check for a win
     boolean hasWon = Math.abs(rows[rowToMove]) == n || // Row win
-        Math.abs(cols[rowToMove]) == m || // Column win
+        Math.abs(cols[colToMove]) == m || // Column win
         Math.abs(diag) == Math.abs(Math.min(m,n)) ||
         Math.abs(revdiag) == Math.abs(Math.min(m,n));
 
@@ -139,9 +154,10 @@ public class AI {
 //    player1.startGame(1);
 
     AI game2 = new AI(4, 3, false);
-    game2.move( 1, 0, 2);
-    game2.move(2, 1, 2);
-    game2.move(1, 1, 1); // Player 2 wins on reverse diagonal
-    game2.move(1, 2, 0);
+    game2.move( 2, 0, 2);
+    game2.move(1, 1, 2); // 1
+    game2.move( 2, 1, 1);
+    game2.move(1, 2, 1); // Player 2 wins on reverse diagonal
+    game2.move(1, 3, 0);
   }
 }
