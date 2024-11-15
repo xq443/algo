@@ -45,20 +45,11 @@ public class AI {
     while (true) {
       int row = rand.nextInt(m);
       int col = rand.nextInt(n);
-      if (board[row][col] == 0) {
-        return new int[]{row, col};
+      if(validate(row, col)){
+        if (board[row][col] == 0) {
+          return new int[]{row, col};
+        }
       }
-    }
-  }
-
-  // For manual moves by players with row and column directly passed
-  private int[] getManualMove(int player, int row, int col) {
-    // Validate the move
-    if (row >= 0 && row < m && col >= 0 && col < n && board[row][col] == 0) {
-      return new int[]{row, col};
-    } else {
-      System.out.println("Invalid move or position already occupied. Try again.");
-      return new int[]{-1, -1}; // Return an invalid move indicator
     }
   }
 
@@ -73,6 +64,19 @@ public class AI {
     }
     return true;
   }
+
+  // For manual moves by players with row and column directly passed
+  private int[] getManualMove(int player, int row, int col) {
+    // Validate the move
+    if (row >= 0 && row < m && col >= 0 && col < n && board[row][col] == 0) {
+      return new int[]{row, col};
+    } else {
+      System.out.println("Invalid move or position already occupied. Try again.");
+      return new int[]{-1, -1}; // Return an invalid move indicator
+    }
+  }
+
+
 
   public int move(int player, int rowToMove, int colToMove) {
 
@@ -150,14 +154,14 @@ public class AI {
 
   public static void main(String[] args) {
     // Game with both players as AI
-//    AI player1 = new AI(3, 3, true); // Player 1 is AI
-//    player1.startGame(1);
+    AI player1 = new AI(3, 3, true); // Player 1 is AI
+    player1.startGame(1);
 
-    AI game2 = new AI(4, 3, false);
-    game2.move( 2, 0, 2);
-    game2.move(1, 1, 2); // 1
-    game2.move( 2, 1, 1);
-    game2.move(1, 2, 1); // Player 2 wins on reverse diagonal
-    game2.move(1, 3, 0);
+//    AI game2 = new AI(4, 3, false);
+//    game2.move( 2, 0, 2);
+//    game2.move(1, 1, 2); // 1
+//    game2.move( 2, 1, 1);
+//    game2.move(1, 2, 1); // Player 2 wins on reverse diagonal
+//    game2.move(1, 3, 0);
   }
 }
