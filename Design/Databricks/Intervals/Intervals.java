@@ -16,27 +16,38 @@ public class Intervals {
       this.start = s;
       this.end = e;
     }
+
+    @Override
+    public String toString() {
+      return "{" +
+          start +
+          "," +  end +
+          '}';
+    }
   }
 
+  // first try to find where is the element with the given index
   // Function to remove a covered element based on the given index
   public List<Interval> removeCoveredElement(List<Interval> list, int idx) throws Exception {
+
     List<Interval> res = new ArrayList<>();
-    int cum = 0; // Accumulated number of covered elements
+    int curr = 0; // Accumulated number of covered elements
     int elem = -1; // The element to remove
 
     // Find the element to remove by calculating cumulative size
     for (Interval interval : list) {
       int size = interval.end - interval.start + 1;
-      if (cum + size > idx) {
-        elem = interval.start + (idx - cum); // The element to be removed
+      if (curr + size > idx) {
+        elem = interval.start + (idx - curr); // The element to be removed
         break;
       }
-      cum += size;
+      curr += size; // update by incrementing its corresponding size
     }
 
     // If the element to delete is not found, return the original intervals
     if (elem == -1) {
-      return list;
+      throw new Exception("index is out of bounds");
+      //return list;
     }
 
     // Adjust intervals and remove the specified element
@@ -112,37 +123,39 @@ public class Intervals {
 
   public void main(String[] args) {
     try {
+
+      runTestCase(Arrays.asList(new Interval(7, 7)),  1, "Test case 0");
       // Test case 1: Example from the problem
-      runTestCase(Arrays.asList(new Interval(4, 7), new Interval(10, 11), new Interval(13, 15)), 2,
-          "Test case 1");
-
-      // Test case 2: Remove the first element
-      runTestCase(List.of(new Interval(1, 3)), 0, "Test case 2");
-
-      // Test case 3: Remove the last element
-      runTestCase(List.of(new Interval(1, 3)), 2, "Test case 3");
-
-      // Test case 4: Remove a middle element, causing interval split
-      runTestCase(List.of(new Interval(1, 3)), 1, "Test case 4");
-
-      // Test case 5: Remove from multiple intervals
-      runTestCase(Arrays.asList(new Interval(1, 1), new Interval(3, 3)), 0, "Test case 5");
-
-      // Test case 6: Single interval, remove middle element
-      runTestCase(List.of(new Interval(4, 7)), 2, "Test case 6");
-
-      // Test case 7: Empty interval list
-      runTestCase(new ArrayList<>(), 0, "Test case 7");
-
-      // Test case 8: Remove element from a single element interval
-      runTestCase(List.of(new Interval(5, 5)), 0, "Test case 8");
-
-      // Test case 9: Remove elements from an interval list with overlapping intervals
-      runTestCase(Arrays.asList(new Interval(1, 5), new Interval(3, 10)), 2, "Test case: Remove from overlapping intervals");
-      // Expected output: [(1, 2), (4, 10)]
-
-      // Test case 10: Index out of range
-      runTestCase(Arrays.asList(new Interval(2, 4), new Interval(6, 8)), 10, "Test case 10");
+//      runTestCase(Arrays.asList(new Interval(4, 7), new Interval(10, 11), new Interval(13, 15)), 2,
+//          "Test case 1");
+//
+//      // Test case 2: Remove the first element
+//      runTestCase(List.of(new Interval(1, 3)), 0, "Test case 2");
+//
+//      // Test case 3: Remove the last element
+//      runTestCase(List.of(new Interval(1, 3)), 2, "Test case 3");
+//
+//      // Test case 4: Remove a middle element, causing interval split
+//      runTestCase(List.of(new Interval(1, 3)), 1, "Test case 4");
+//
+//      // Test case 5: Remove from multiple intervals
+//      runTestCase(Arrays.asList(new Interval(1, 1), new Interval(3, 3)), 0, "Test case 5");
+//
+//      // Test case 6: Single interval, remove middle element
+//      runTestCase(List.of(new Interval(4, 7)), 2, "Test case 6");
+//
+//      // Test case 7: Empty interval list
+//      runTestCase(new ArrayList<>(), 0, "Test case 7");
+//
+//      // Test case 8: Remove element from a single element interval
+//      runTestCase(List.of(new Interval(5, 5)), 0, "Test case 8");
+//
+//      // Test case 9: Remove elements from an interval list with overlapping intervals
+//      runTestCase(Arrays.asList(new Interval(1, 5), new Interval(3, 10)), 2, "Test case: Remove from overlapping intervals");
+//      // Expected output: [(1, 2), (4, 10)]
+//
+//      // Test case 10: Index out of range
+//      runTestCase(Arrays.asList(new Interval(2, 4), new Interval(6, 8)), 10, "Test case 10");
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
