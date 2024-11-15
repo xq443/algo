@@ -37,8 +37,13 @@ public class CIDRMatcher {
 
     int baseIPInt = toInt(baseIP);
 
+
+    // Create mask based on prefix length
+    // If the prefixLength is 24,
+    // we need a mask that keeps the first 24 bits and sets the remaining 8 bits to 0.
+
     // Apply the mask based on the prefix length
-    int mask = (int) (0xFFFFFFFF << (32 - prefixLength)); // bitmask with 255: 11111111 11111111 11111111 11111111
+    int mask = (0xFFFFFFFF << (32 - prefixLength)); // bitmask with 255: 11111111 11111111 11111111 11111111
 
     /**
      * Consider the IP 192.168.1.5 with a subnet mask of /24
@@ -52,7 +57,12 @@ public class CIDRMatcher {
      * = 11000000 10101000 00000001 00000000 (192.168.1.0)
      */
 
-    // Compare the masked IP address with the base CIDR IP: checks if the network portion of the ipInt matches the network portion of baseIPInt.
+    // Compare the masked IP address with the base CIDR IP:
+    // checks if the network portion of the ipInt matches the network portion of baseIPInt.
+
+    // determining which part of an IP address belongs to the network (the part shared by all devices in the same network)
+    // and which part belongs to the host (the unique part that identifies individual devices within the network).
+    //  masked version of 192.168.1.100 matches 192.168.1.0, belongs to the network,
     return (ipInt & mask) == (baseIPInt & mask);
 
   }
