@@ -1,6 +1,6 @@
 package Basic;
 
-public class longestIncreasingSubsequence {
+public class LongestIncreasingSubsequence {
     /**
      * This is the dynamic programming of the second type.
      * We consider what the second-largest element of the Longest Increasing Subsequence (LIS) ending with nums[i] is.
