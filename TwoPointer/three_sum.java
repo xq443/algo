@@ -16,14 +16,14 @@ public class three_sum {
             int left = i + 1, right = n - 1;
 
             while(left < right) {
-                if(left != i + 1 && nums[left] == nums[left - 1]) {
+                while (left != i + 1 && nums[left] == nums[left - 1]) {
                     left++;
-                    continue;
                 }
-                if(right != n - 1 && nums[right + 1] == nums[right] ) {
+                left++;
+                while(right != n - 1 && nums[right + 1] == nums[right] ) {
                     right--;
-                    continue;
                 }
+                right--;
                 int sum = nums[i] + nums[left] + nums[right];
                 if(sum == 0) {
                     List<Integer> sub = new LinkedList<>();
